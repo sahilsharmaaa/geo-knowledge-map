@@ -25,9 +25,9 @@ const features = [
 ];
 
 const testimonials = [
-  { quote: "I used to have 6 different apps for tracking world news. Now it's all in one place and I can actually see the connections.", name: "Arjun M.", role: "Political Science Student", flag: "🇮🇳" },
-  { quote: "During earnings season I map out every major economy's data points. MapMind made me a better analyst.", name: "Sarah K.", role: "Equity Research Analyst", flag: "🇺🇸" },
-  { quote: "I'm preparing for civil services. Having a visual map of current affairs has genuinely changed how I revise.", name: "Priya R.", role: "UPSC Aspirant", flag: "🇮🇳" },
+  { quote: "I used to have 6 different apps for tracking world news. Now it's all in one place and I can actually see the connections.", name: "Aryan Chowdhary", role: "Computer Science Student", flag: "🇮🇳" },
+  { quote: "During earnings season I map out every major economy's data points. MapMind made me a better analyst.", name: "Eshaan Trehan", role: "Equity Research Analyst", flag: "🇺🇸" },
+  { quote: "I'm preparing for civil services. Having a visual map of current affairs has genuinely changed how I revise.", name: "Arjun Verma", role: "UPSC Aspirant", flag: "🇮🇳" },
   { quote: "History used to feel abstract. Pinning events to actual places on a map made everything click.", name: "James T.", role: "History Teacher", flag: "🇬🇧" },
   { quote: "I follow 12 different markets. MapMind is the only tool that lets me think geographically about finance.", name: "Chen W.", role: "Independent Trader", flag: "🇸🇬" },
 ];
