@@ -147,9 +147,9 @@ const Landing = () => {
         <div className="relative max-w-6xl mx-auto">
           <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-background to-transparent z-10" />
           <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-background to-transparent z-10" />
-          <div className="flex gap-8 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-thin px-1">
+          <div className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-thin px-4">
             {steps.map((s, i) => (
-              <div key={i} className="min-w-[80vw] sm:min-w-[55vw] md:min-w-[45vw] lg:min-w-[35vw] snap-center flex flex-col items-center text-center shrink-0">
+              <div key={i} className="min-w-[75vw] sm:min-w-[50vw] md:min-w-[400px] lg:min-w-[420px] max-w-[500px] snap-center flex flex-col items-center text-center shrink-0">
                 <span className="text-xs font-semibold text-primary mb-3 tracking-widest uppercase">Step {i + 1}</span>
                 <div className="rounded-lg border border-border/50 overflow-hidden shadow-xl mb-5 w-full">
                   <div className="bg-secondary/80 flex items-center gap-1.5 px-3 py-1.5">
