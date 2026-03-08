@@ -38,6 +38,7 @@ const steps = [
   { img: screenshotStep1, title: "Sign up to add a note", caption: "Create your free account and start capturing your thoughts in seconds." },
   { img: screenshotStep2, title: "Pick your location", caption: "Click any country or region on the map — or search for it." },
   { img: screenshotStep3, title: "See your knowledge grow", caption: "Watch your map fill up. Every country you study lights up. Every connection becomes visible." },
+  { img: screenshotStep4, title: "Explore your region view", caption: "That's how your notes will look in region view — organised by country with tags and filters." },
 ];
 
 const Landing = () => {
