@@ -183,20 +183,25 @@ const Landing = () => {
       {/* Testimonials */}
       <SectionWrapper>
         <h2 className="text-3xl font-bold text-center mb-14">From people who think for themselves</h2>
-        <div className="max-w-6xl mx-auto flex gap-5 overflow-x-auto pb-4 snap-x snap-mandatory lg:grid lg:grid-cols-3 lg:overflow-visible">
-          {testimonials.map((t, i) => (
-            <div
-              key={i}
-              className="min-w-[280px] snap-center rounded-xl border border-border/50 bg-secondary/20 p-6 flex flex-col gap-4"
-            >
-              <Quote className="w-5 h-5 text-primary shrink-0" />
-              <p className="text-sm italic text-muted-foreground leading-relaxed flex-1">"{t.quote}"</p>
-              <div className="text-sm">
-                <span className="font-medium">{t.name}</span>
-                <span className="text-muted-foreground">, {t.role} {t.flag}</span>
+        <div className="relative max-w-6xl mx-auto">
+          {/* Fade edges on mobile to hint at scrollable content */}
+          <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-background to-transparent z-10 lg:hidden" />
+          <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-background to-transparent z-10 lg:hidden" />
+          <div className="flex gap-5 overflow-x-auto pb-4 snap-x snap-mandatory lg:grid lg:grid-cols-3 lg:overflow-visible scrollbar-thin px-1">
+            {testimonials.map((t, i) => (
+              <div
+                key={i}
+                className="min-w-[280px] snap-center rounded-xl border border-border/50 bg-secondary/20 p-6 flex flex-col gap-4"
+              >
+                <Quote className="w-5 h-5 text-primary shrink-0" />
+                <p className="text-sm italic text-muted-foreground leading-relaxed flex-1">"{t.quote}"</p>
+                <div className="text-sm">
+                  <span className="font-medium">{t.name}</span>
+                  <span className="text-muted-foreground">, {t.role} {t.flag}</span>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </SectionWrapper>
 
