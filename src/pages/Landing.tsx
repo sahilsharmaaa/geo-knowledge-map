@@ -7,6 +7,7 @@ import screenshotHero from "@/assets/screenshot-hero.png";
 import screenshotStep1 from "@/assets/screenshot-step1.png";
 import screenshotStep2 from "@/assets/screenshot-step2.png";
 import screenshotStep3 from "@/assets/screenshot-step3.png";
+import screenshotStep4 from "@/assets/screenshot-step4.png";
 
 const personas = [
   { icon: Newspaper, title: "The News Follower", desc: "Track global conflicts, elections, and economic shifts. Never lose context on a developing story." },
@@ -37,6 +38,7 @@ const steps = [
   { img: screenshotStep1, title: "Sign up to add a note", caption: "Create your free account and start capturing your thoughts in seconds." },
   { img: screenshotStep2, title: "Pick your location", caption: "Click any country or region on the map — or search for it." },
   { img: screenshotStep3, title: "See your knowledge grow", caption: "Watch your map fill up. Every country you study lights up. Every connection becomes visible." },
+  { img: screenshotStep4, title: "Explore your region view", caption: "That's how your notes will look in region view — organised by country with tags and filters." },
 ];
 
 const Landing = () => {
