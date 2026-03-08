@@ -144,25 +144,26 @@ const Landing = () => {
       {/* How it works */}
       <SectionWrapper id="workflow">
         <h2 className="text-3xl font-bold text-center mb-14">From reading to remembering — in seconds</h2>
-        <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-10 items-start">
-          {steps.map((s, i) => (
-            <div key={i} className="flex flex-col items-center text-center">
-              <span className="text-xs font-semibold text-primary mb-3 tracking-widest uppercase">Step {i + 1}</span>
-              <div className="rounded-lg border border-border/50 overflow-hidden shadow-xl mb-5 w-full">
-                <div className="bg-secondary/80 flex items-center gap-1.5 px-3 py-1.5">
-                  <span className="w-2 h-2 rounded-full bg-muted-foreground/30" />
-                  <span className="w-2 h-2 rounded-full bg-muted-foreground/30" />
-                  <span className="w-2 h-2 rounded-full bg-muted-foreground/30" />
+        <div className="relative max-w-6xl mx-auto">
+          <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-background to-transparent z-10" />
+          <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-background to-transparent z-10" />
+          <div className="flex gap-8 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-thin px-1">
+            {steps.map((s, i) => (
+              <div key={i} className="min-w-[85vw] sm:min-w-[70vw] md:min-w-[60vw] lg:min-w-[50vw] snap-center flex flex-col items-center text-center shrink-0">
+                <span className="text-xs font-semibold text-primary mb-3 tracking-widest uppercase">Step {i + 1}</span>
+                <div className="rounded-lg border border-border/50 overflow-hidden shadow-xl mb-5 w-full">
+                  <div className="bg-secondary/80 flex items-center gap-1.5 px-3 py-1.5">
+                    <span className="w-2 h-2 rounded-full bg-muted-foreground/30" />
+                    <span className="w-2 h-2 rounded-full bg-muted-foreground/30" />
+                    <span className="w-2 h-2 rounded-full bg-muted-foreground/30" />
+                  </div>
+                  <img src={s.img} alt={s.title} className="w-full block" />
                 </div>
-                <img src={s.img} alt={s.title} className="w-full block" />
+                <h3 className="text-lg font-semibold mb-2">{s.title}</h3>
+                <p className="text-sm text-muted-foreground max-w-xs">{s.caption}</p>
               </div>
-              <h3 className="text-lg font-semibold mb-2">{s.title}</h3>
-              <p className="text-sm text-muted-foreground max-w-xs">{s.caption}</p>
-              {i < 2 && (
-                <span className="hidden md:block text-muted-foreground/30 text-3xl absolute" style={{ right: "-1.5rem", top: "50%" }}>→</span>
-              )}
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </SectionWrapper>
 
