@@ -1,7 +1,7 @@
 import { Globe, Link2, Tags, Network, Share2, Flame, Newspaper, TrendingUp, BookOpen, Lightbulb, Quote } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import WorldMapSVG from "@/components/landing/WorldMapSVG";
+import AnimatedMapBackground from "@/components/landing/AnimatedMapBackground";
 import SectionWrapper from "@/components/landing/SectionWrapper";
 import screenshotHero from "@/assets/screenshot-hero.png";
 import screenshotStep1 from "@/assets/screenshot-step1.png";
@@ -47,10 +47,10 @@ const Landing = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+    <div className="min-h-screen bg-background text-foreground overflow-x-hidden relative">
+      <AnimatedMapBackground />
       {/* Hero */}
-      <section className="relative min-h-screen flex items-center justify-center px-6 md:px-12 lg:px-24">
-        <WorldMapSVG />
+      <section className="relative min-h-screen flex items-center justify-center px-6 md:px-12 lg:px-24 z-10">
         <div className="relative z-10 max-w-7xl w-full mx-auto grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Left */}
           <div className="flex flex-col gap-6 pt-12 lg:pt-0">
