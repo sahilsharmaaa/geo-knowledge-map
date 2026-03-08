@@ -7,6 +7,7 @@ import screenshotHero from "@/assets/screenshot-hero.png";
 import screenshotStep1 from "@/assets/screenshot-step1.png";
 import screenshotStep2 from "@/assets/screenshot-step2.png";
 import screenshotStep3 from "@/assets/screenshot-step3.png";
+import screenshotStep4 from "@/assets/screenshot-step4.png";
 
 const personas = [
   { icon: Newspaper, title: "The News Follower", desc: "Track global conflicts, elections, and economic shifts. Never lose context on a developing story." },
