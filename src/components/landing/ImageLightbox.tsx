@@ -28,13 +28,13 @@ const ImageLightbox = ({ src, alt, className }: ImageLightboxProps) => {
         </button>
       </DialogTrigger>
 
-      <DialogContent className="h-screen w-screen max-w-none overflow-hidden rounded-none border-0 bg-black/90 p-4 shadow-none sm:p-6 [&>button]:right-4 [&>button]:top-4 [&>button]:rounded-full [&>button]:bg-secondary/85 [&>button]:p-2 [&>button]:opacity-100 [&>button]:text-foreground [&>button]:ring-0 [&>button]:hover:bg-secondary [&>button>svg]:h-6 [&>button>svg]:w-6">
+      <DialogContent className="h-[100dvh] w-[100dvw] max-w-none overflow-hidden rounded-none border-0 bg-black/90 p-4 shadow-none sm:p-6 [&>button]:z-[100] [&>button]:right-[max(1rem,env(safe-area-inset-right))] [&>button]:top-[max(1rem,env(safe-area-inset-top))] sm:[&>button]:right-6 sm:[&>button]:top-6 [&>button]:rounded-full [&>button]:bg-secondary/85 [&>button]:p-2 [&>button]:opacity-100 [&>button]:text-foreground [&>button]:ring-0 [&>button]:hover:bg-secondary [&>button>svg]:h-6 [&>button>svg]:w-6">
         <DialogTitle className="sr-only">{alt}</DialogTitle>
         <div className="flex h-full w-full items-center justify-center">
           <img
             src={src}
             alt={alt}
-            className="max-h-[calc(100vh-2rem)] max-w-[calc(100vw-2rem)] rounded-lg object-contain shadow-2xl sm:max-h-[calc(100vh-3rem)] sm:max-w-[calc(100vw-3rem)]"
+            className="max-h-[calc(100dvh-2rem)] max-w-[calc(100dvw-2rem)] rounded-lg object-contain shadow-2xl sm:max-h-[calc(100dvh-3rem)] sm:max-w-[calc(100dvw-3rem)]"
           />
         </div>
       </DialogContent>
