@@ -291,7 +291,7 @@ const CinematicIntro = () => {
       <div ref={carouselWrapperRef} className="cinematic-carousel-wrapper">
         {/* Section 1 */}
         <CinematicSlide bgImage={bg1} isActive={activeIndex === 0} className="max-w-4xl sm:max-w-5xl">
-          <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-foreground">
+          <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white">
             Do you know someone who always knows what's going on{" "}
             <span className="text-gradient">in the world?</span>
           </h2>
@@ -299,7 +299,7 @@ const CinematicIntro = () => {
 
         {/* Section 2 */}
         <CinematicSlide bgImage={bg2} isActive={activeIndex === 1} className="max-w-3xl sm:max-w-4xl">
-          <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-foreground mb-6 sm:mb-8">
+          <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white mb-6 sm:mb-8">
             What's going on in the United States?
           </h2>
           <p className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gradient">
@@ -314,7 +314,7 @@ const CinematicIntro = () => {
           isActive={activeIndex === 2}
           className="max-w-3xl sm:max-w-4xl"
         >
-          <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-foreground mb-6 sm:mb-8">
+          <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white mb-6 sm:mb-8">
             What's happening across Europe?
           </h2>
           <p className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gradient">
@@ -324,7 +324,7 @@ const CinematicIntro = () => {
 
         {/* Section 4 */}
         <CinematicSlide bgImage={bg3} isActive={activeIndex === 3} className="max-w-3xl sm:max-w-4xl">
-          <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold leading-tight text-foreground">
+          <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold leading-tight text-white">
             But how do they know?
           </h2>
         </CinematicSlide>
@@ -337,16 +337,16 @@ const CinematicIntro = () => {
           sectionClassName="cinematic-section--reading"
         >
           <div className="space-y-3 sm:space-y-4 md:space-y-5 lg:space-y-6">
-            <p className="text-sm xs:text-base sm:text-lg md:text-xl text-foreground/84 leading-relaxed">
+            <p className="text-sm xs:text-base sm:text-lg md:text-xl text-white/90 leading-relaxed">
               The answer is simple: structure what you learn geographically.
             </p>
-            <p className="text-sm xs:text-base sm:text-lg md:text-xl text-foreground/84 leading-relaxed">
+            <p className="text-sm xs:text-base sm:text-lg md:text-xl text-white/90 leading-relaxed">
               Every piece of news has a country. Every market move has an origin. Every idea has a place on the map. When you anchor information to a location, it stops floating — it sticks.
             </p>
-            <p className="text-sm xs:text-base sm:text-lg md:text-xl text-foreground/84 leading-relaxed">
+            <p className="text-sm xs:text-base sm:text-lg md:text-xl text-white/90 leading-relaxed">
               Charlie Munger called it building a "lattice work of mental models" — a framework where every new thing you learn connects to something you already know, and reinforces it.
             </p>
-            <p className="text-sm xs:text-base sm:text-lg md:text-xl text-foreground/84 leading-relaxed">
+            <p className="text-sm xs:text-base sm:text-lg md:text-xl text-white/90 leading-relaxed">
               That's the habit. Geography is the lattice.
             </p>
           </div>
@@ -370,14 +370,14 @@ const CinematicIntro = () => {
           <button
             onClick={goPrev}
             disabled={activeIndex === 0}
-            className="hidden sm:flex fixed left-6 top-1/2 -translate-y-1/2 z-50 p-2 text-muted-foreground hover:text-foreground disabled:opacity-30 disabled:cursor-not-allowed transition-colors duration-200"
+            className="hidden sm:flex fixed left-6 top-1/2 -translate-y-1/2 z-50 p-2 text-white/60 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-colors duration-200"
             aria-label="Previous section"
           >
             <ChevronLeft className="w-6 h-6" />
           </button>
           <button
             onClick={goNext}
-            className="hidden sm:flex fixed right-6 top-1/2 -translate-y-1/2 z-50 p-2 text-muted-foreground hover:text-foreground transition-colors duration-200"
+            className="hidden sm:flex fixed right-6 top-1/2 -translate-y-1/2 z-50 p-2 text-white/60 hover:text-white transition-colors duration-200"
             aria-label="Next section"
           >
             <ChevronRight className="w-6 h-6" />
@@ -396,7 +396,7 @@ const CinematicIntro = () => {
                 "w-2 h-2 rounded-full transition-all duration-300",
                 activeIndex === index
                   ? "bg-primary w-6"
-                  : "bg-muted-foreground/50 hover:bg-muted-foreground"
+                  : "bg-white/50 hover:bg-white"
               )}
               aria-label={`Go to section ${index + 1}`}
               aria-current={activeIndex === index}
@@ -407,7 +407,7 @@ const CinematicIntro = () => {
 
       {/* Mobile hint text */}
       {isInCarousel && isMobile && activeIndex !== 4 && (
-        <div className="fixed bottom-16 left-1/2 -translate-x-1/2 text-xs text-muted-foreground/70 pointer-events-none animate-pulse">
+        <div className="fixed bottom-16 left-1/2 -translate-x-1/2 text-xs text-white/70 pointer-events-none animate-pulse">
           Swipe up to continue
         </div>
       )}
