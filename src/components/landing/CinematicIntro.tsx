@@ -104,8 +104,8 @@ const CinematicIntro = () => {
       const inCarousel = currentScrollTop < window.innerHeight;
       setIsInCarousel(inCarousel);
 
-      // If user is in sections 1-5 (activeIndex < 4), prevent scrolling and navigate carousel instead
-      if (activeIndexRef.current < 4 && currentScrollTop > 10) {
+      // If user is in sections 1-5 (activeIndex <= 4), prevent scrolling and navigate carousel instead
+      if (activeIndexRef.current <= 4 && currentScrollTop > 10) {
         // Force scroll back to top to prevent page scroll
         container.scrollTop = 0;
         
@@ -146,8 +146,8 @@ const CinematicIntro = () => {
       const inCarouselArea = scrollTop < window.innerHeight * 0.1; // Very lenient check
 
       // Only intercept wheel events in carousel area (first 5 sections)
-      if (activeIndexRef.current >= 4) {
-        // At section 5, allow normal wheel scrolling to proceed to main content
+      if (activeIndexRef.current > 4) {
+        // Beyond section 5, allow normal wheel scrolling to proceed to main content
         return;
       }
 
