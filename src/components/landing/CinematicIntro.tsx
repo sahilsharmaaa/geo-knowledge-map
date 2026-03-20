@@ -86,19 +86,52 @@ const CinematicIntro = () => {
     goToSection(Math.max(0, activeIndex - 1));
   };
 
-  // Track carousel visibility and handle scroll back to carousel
+  // Track carousel visibility and handle scroll-to-carousel navigation
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
+    let lastScrollTop = 0;
+    let lastScrollTime = 0;
+
     const handleScroll = () => {
-      const scrollTop = container.scrollTop;
+      const currentScrollTop = container.scrollTop;
+      const scrollDelta = currentScrollTop - lastScrollTop;
+      const now = Date.now();
+      const timeSinceLastScroll = now - lastScrollTime;
+
       // Only hide dots/arrows if user scrolls significantly below carousel
-      const inCarousel = scrollTop < window.innerHeight;
+      const inCarousel = currentScrollTop < window.innerHeight;
       setIsInCarousel(inCarousel);
+
+      // Handle vertical scroll -> horizontal carousel navigation (only while in carousel)
+      if (inCarousel && timeSinceLastScroll > 600) {
+        const scrollThreshold = 30;
+
+        if (scrollDelta > scrollThreshold) {
+          // Scrolling down - go to next section
+          if (activeIndexRef.current < 4) {
+            container.scrollTop = 0; // Reset scroll position
+            setActiveIndex(activeIndexRef.current + 1);
+          } else {
+            // At last section, allow scroll to proceed to main content
+            return;
+          }
+          lastScrollTime = now;
+        } else if (scrollDelta < -scrollThreshold) {
+          // Scrolling up - go to previous section
+          if (activeIndexRef.current > 0) {
+            container.scrollTop = 0; // Reset scroll position
+            setActiveIndex(activeIndexRef.current - 1);
+          }
+          lastScrollTime = now;
+        }
+      }
+
+      lastScrollTop = currentScrollTop;
     };
 
-    container.addEventListener("scroll", handleScroll);
+    container.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
       container.removeEventListener("scroll", handleScroll);
