@@ -340,6 +340,9 @@ const CinematicIntro = () => {
             <p className="text-sm xs:text-base sm:text-lg md:text-xl text-white/90 leading-relaxed">
               The answer is simple: structure what you learn geographically.
             </p>
+            <p className="text-sm xs:text-base sm:text-lg md:text-xl text-red-500 font-medium leading-relaxed">
+              You read. You forget. You scroll. Repeat.
+            </p>
             <p className="text-sm xs:text-base sm:text-lg md:text-xl text-white/90 leading-relaxed">
               Every piece of news has a country. Every market move has an origin. Every idea has a place on the map. When you anchor information to a location, it stops floating — it sticks.
             </p>
