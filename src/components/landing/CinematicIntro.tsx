@@ -175,6 +175,8 @@ const CinematicIntro = () => {
 
       // Don't go past section 4 (allow section 5, then scroll to main)
       if (newIndex > 4) {
+        setIsInCarousel(false);
+        scrollToHero();
         return;
       }
 
@@ -194,36 +196,37 @@ const CinematicIntro = () => {
     const container = containerRef.current;
     if (!container) return;
 
-    let touchStartX = 0;
-    let touchEndX = 0;
+    let touchStartY = 0;
+    let touchEndY = 0;
     let touchStartTime = 0;
 
     const handleTouchStart = (e: TouchEvent) => {
-      touchStartX = e.changedTouches[0].screenX;
+      touchStartY = e.changedTouches[0].screenY;
       touchStartTime = Date.now();
     };
 
-    const handleTouchEnd = (e: TouchEvent) => {
-      touchEndX = e.changedTouches[0].screenX;
-      const touchDuration = Date.now() - touchStartTime;
-      
-      // Only process as swipe if it's a quick gesture (less than 500ms)
-      if (touchDuration > 500) return;
-      
-      const swipeThreshold = 30;
-      const diff = touchStartX - touchEndX;
-
-      const scrollTop = container.scrollTop;
-      const inCarouselArea = scrollTop < window.innerHeight;
-
-      if (!inCarouselArea) return;
-
-      if (Math.abs(diff) > swipeThreshold) {
-        // Prevent default scroll behavior during swipe
+    const handleTouchMove = (e: TouchEvent) => {
+      // If we are still in the cinematic sequence, prevent native vertical scrolling
+      if (activeIndexRef.current <= 4) {
         e.preventDefault();
-        
+      }
+    };
+
+    const handleTouchEnd = (e: TouchEvent) => {
+      touchEndY = e.changedTouches[0].screenY;
+      const touchDuration = Date.now() - touchStartTime;
+
+      // Only process as swipe if it's a quick/medium gesture
+      if (touchDuration > 1000) return;
+
+      const swipeThreshold = 30; // pixels
+      // diff > 0 means user swiped up (intent to scroll down / go next)
+      const diff = touchStartY - touchEndY;
+
+      // If they swipe vertically far enough
+      if (Math.abs(diff) > swipeThreshold) {
         if (diff > 0) {
-          // Swiped left - go next
+          // Swiped up - go next
           if (activeIndexRef.current < 4) {
             setActiveIndex(activeIndexRef.current + 1);
           } else {
@@ -231,7 +234,7 @@ const CinematicIntro = () => {
             scrollToHero();
           }
         } else {
-          // Swiped right - go previous
+          // Swiped down - go previous
           if (activeIndexRef.current > 0) {
             setActiveIndex(activeIndexRef.current - 1);
           }
@@ -240,10 +243,12 @@ const CinematicIntro = () => {
     };
 
     container.addEventListener("touchstart", handleTouchStart, { passive: true });
-    container.addEventListener("touchend", handleTouchEnd, { passive: false });
+    container.addEventListener("touchmove", handleTouchMove, { passive: false });
+    container.addEventListener("touchend", handleTouchEnd, { passive: true });
 
     return () => {
       container.removeEventListener("touchstart", handleTouchStart);
+      container.removeEventListener("touchmove", handleTouchMove);
       container.removeEventListener("touchend", handleTouchEnd);
     };
   }, []);
@@ -390,7 +395,7 @@ const CinematicIntro = () => {
       {/* Mobile hint text */}
       {isInCarousel && isMobile && activeIndex !== 4 && (
         <div className="fixed bottom-16 left-1/2 -translate-x-1/2 text-xs text-muted-foreground/70 pointer-events-none animate-pulse">
-          Swipe to continue
+          Swipe up to continue
         </div>
       )}
     </div>
