@@ -1,4 +1,4 @@
-import { Globe, Link2, Tags, Network, Share2, Flame, Newspaper, TrendingUp, BookOpen, Lightbulb, Quote } from "lucide-react";
+import { ChevronLeft, ChevronRight, Globe, Link2, Tags, Network, Share2, Flame, Newspaper, TrendingUp, BookOpen, Lightbulb, Quote } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -53,7 +53,18 @@ const steps = [
 
 const Landing = () => {
   const heroRef = useRef<HTMLElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [isNavbarVisible, setIsNavbarVisible] = useState(false);
+
+  const scrollByAmount = (direction: "left" | "right") => {
+    if (scrollContainerRef.current) {
+      const scrollAmount = window.innerWidth < 768 ? window.innerWidth * 0.8 : 400;
+      scrollContainerRef.current.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth"
+      });
+    }
+  };
 
   useEffect(() => {
     const heroSection = heroRef.current;
@@ -151,33 +162,33 @@ const Landing = () => {
           </div>
         </SectionWrapper>
 
-        {/* Import Callout */}
-        <ImportCallout />
-
-        {/* Who is this for */}
-        <SectionWrapper>
-          <h2 className="font-display text-2xl sm:text-3xl font-bold text-center mb-10 sm:mb-14">Built for people who think in context</h2>
-          <div className="max-w-5xl mx-auto grid sm:grid-cols-2 gap-4 sm:gap-5">
-            {personas.map((p) => (
-              <div
-                key={p.title}
-                className="group rounded-lg sm:rounded-xl border border-border/50 bg-secondary/30 p-4 sm:p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5"
-              >
-                <p.icon className="w-5 h-5 text-primary mb-2 sm:mb-3" />
-                <h3 className="text-base sm:text-lg font-semibold mb-2">{p.title}</h3>
-                <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">{p.desc}</p>
-              </div>
-            ))}
-          </div>
-        </SectionWrapper>
-
         {/* How it works */}
         <SectionWrapper id="workflow">
           <h2 className="font-display text-2xl sm:text-3xl font-bold text-center mb-10 sm:mb-14">From reading to remembering — in seconds</h2>
-          <div className="relative max-w-6xl mx-auto">
-            <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-4 sm:w-8 bg-gradient-to-r from-background to-transparent z-10" />
-            <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-4 sm:w-8 bg-gradient-to-l from-background to-transparent z-10" />
-            <div className="flex gap-3 sm:gap-4 md:gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-thin">
+          <div className="relative max-w-6xl mx-auto px-1 sm:px-4">
+            {/* Arrows */}
+            <button 
+              onClick={() => scrollByAmount("left")}
+              className="absolute left-1 sm:-left-3 md:-left-6 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-8 sm:w-10 md:w-12 h-8 sm:h-10 md:h-12 rounded-full bg-background/80 hover:bg-muted border border-border shadow-[0_0_15px_rgba(0,0,0,0.1)] dark:shadow-[0_0_15px_rgba(255,255,255,0.05)] backdrop-blur-md text-foreground transition-all duration-200"
+              aria-label="Scroll left"
+            >
+              <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
+            </button>
+
+            <button 
+              onClick={() => scrollByAmount("right")}
+              className="absolute right-1 sm:-right-3 md:-right-6 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-8 sm:w-10 md:w-12 h-8 sm:h-10 md:h-12 rounded-full bg-background/80 hover:bg-muted border border-border shadow-[0_0_15px_rgba(0,0,0,0.1)] dark:shadow-[0_0_15px_rgba(255,255,255,0.05)] backdrop-blur-md text-foreground transition-all duration-200"
+              aria-label="Scroll right"
+            >
+              <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
+            </button>
+
+            <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-6 sm:w-10 md:w-16 bg-gradient-to-r from-background to-transparent z-10" />
+            <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-6 sm:w-10 md:w-16 bg-gradient-to-l from-background to-transparent z-10" />
+            <div 
+              ref={scrollContainerRef}
+              className="flex gap-3 sm:gap-4 md:gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-thin"
+            >
               {steps.map((s, i) => (
                 <div key={i} className="w-full min-w-full px-2 sm:px-4 snap-center flex flex-col items-center text-center shrink-0 sm:min-w-[50vw] sm:px-0 md:min-w-[400px] lg:min-w-[420px] max-w-[500px]">
                   <span className="text-xs font-semibold text-primary mb-2 sm:mb-3 tracking-widest uppercase">Step {i + 1}</span>
@@ -196,6 +207,26 @@ const Landing = () => {
                 </div>
               ))}
             </div>
+          </div>
+        </SectionWrapper>
+
+        {/* Import Callout */}
+        <ImportCallout />
+
+        {/* Who is this for */}
+        <SectionWrapper>
+          <h2 className="font-display text-2xl sm:text-3xl font-bold text-center mb-10 sm:mb-14">Built for people who think in context</h2>
+          <div className="max-w-5xl mx-auto grid sm:grid-cols-2 gap-4 sm:gap-5">
+            {personas.map((p) => (
+              <div
+                key={p.title}
+                className="group rounded-lg sm:rounded-xl border border-border/50 bg-secondary/30 p-4 sm:p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5"
+              >
+                <p.icon className="w-5 h-5 text-primary mb-2 sm:mb-3" />
+                <h3 className="text-base sm:text-lg font-semibold mb-2">{p.title}</h3>
+                <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">{p.desc}</p>
+              </div>
+            ))}
           </div>
         </SectionWrapper>
 
