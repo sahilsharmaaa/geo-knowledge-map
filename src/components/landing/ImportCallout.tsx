@@ -1,6 +1,7 @@
 import { ArrowRightLeft, FileUp, Database, CheckCircle2, Chrome, Sparkles, Bot } from "lucide-react";
 import ImageLightbox from "./ImageLightbox";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import SectionWrapper from "./SectionWrapper";
 import extension1 from "@/assets/extension-1.png";
 import extension2 from "@/assets/extension-2.png";
@@ -90,7 +91,7 @@ const ImportCallout = () => {
             <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-background to-transparent z-10" />
             <div className="flex gap-5 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-thin px-1">
               {gptSteps.map((step, i) => (
-                <div key={i} className="min-w-[300px] max-w-[380px] snap-center shrink-0 flex flex-col items-center text-center">
+                <div key={i} className="min-w-[320px] max-w-[420px] snap-center shrink-0 flex flex-col items-center text-center">
                   <span className="text-xs font-semibold text-primary mb-3 tracking-widest uppercase">Step {i + 1}</span>
                   <div className="rounded-xl border border-border/50 overflow-hidden shadow-xl mb-4 w-full bg-secondary/20">
                     <div className="bg-secondary/80 flex items-center gap-1.5 px-3 py-1.5">
@@ -98,9 +99,7 @@ const ImportCallout = () => {
                       <span className="w-2 h-2 rounded-full bg-muted-foreground/30" />
                       <span className="w-2 h-2 rounded-full bg-muted-foreground/30" />
                     </div>
-                    <div className="aspect-[4/3]">
-                      <ImageLightbox src={step.img} alt={step.label} className="w-full h-full object-cover object-top" />
-                    </div>
+                    <ImageLightbox src={step.img} alt={step.label} className="block h-auto w-full object-contain" />
                   </div>
                   <p className="text-sm font-medium text-muted-foreground">{step.label}</p>
                 </div>
@@ -129,12 +128,15 @@ const ImportCallout = () => {
             <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-background to-transparent z-10" />
             <div className="flex gap-5 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-thin px-1">
               {extensionSteps.map((step, i) => (
-                <div key={i} className="min-w-[300px] max-w-[380px] snap-center shrink-0 flex flex-col items-center text-center">
+                <div key={i} className="min-w-[320px] max-w-[420px] snap-center shrink-0 flex flex-col items-center text-center">
                   <span className="text-xs font-semibold text-primary mb-3 tracking-widest uppercase">Step {i + 1}</span>
                   <div className="rounded-xl border border-border/50 overflow-hidden shadow-xl mb-4 w-full bg-secondary/20">
-                    <div className="aspect-[4/3]">
-                      <ImageLightbox src={step.img} alt={step.label} className="w-full h-full object-cover object-top" />
+                    <div className="bg-secondary/80 flex items-center gap-1.5 px-3 py-1.5">
+                      <span className="w-2 h-2 rounded-full bg-muted-foreground/30" />
+                      <span className="w-2 h-2 rounded-full bg-muted-foreground/30" />
+                      <span className="w-2 h-2 rounded-full bg-muted-foreground/30" />
                     </div>
+                    <ImageLightbox src={step.img} alt={step.label} className="block h-auto w-full object-contain" />
                   </div>
                   <p className="text-sm font-medium text-muted-foreground">{step.label}</p>
                 </div>
@@ -143,11 +145,26 @@ const ImportCallout = () => {
           </div>
 
           <div className="text-center mt-10">
-            <Button size="lg" className="text-base px-8" asChild>
-              <a href="https://chromewebstore.google.com" target="_blank" rel="noopener noreferrer">
-                Install Chrome Extension →
-              </a>
-            </Button>
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button size="lg" className="text-base px-8">
+                  Install Chrome Extension →
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-md">
+                <DialogHeader>
+                  <DialogTitle>Find the extension ZIP in MapMind</DialogTitle>
+                  <DialogDescription className="leading-relaxed">
+                    Go to <span className="text-foreground">Profile -&gt; Import/Export</span>, then scroll to the bottom to find the extension ZIP folder.
+                  </DialogDescription>
+                </DialogHeader>
+                <DialogFooter>
+                  <DialogClose asChild>
+                    <Button>Got it</Button>
+                  </DialogClose>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
           </div>
         </div>
       </SectionWrapper>

@@ -46,7 +46,7 @@ const Navbar = ({ isVisible = true }: NavbarProps) => {
             alt="MapMind logo"
             className="w-9 h-9 transition-transform duration-300 group-hover:scale-110"
           />
-          <span className="text-lg font-bold tracking-tight font-display">MapMind</span>
+          <span className="text-lg font-bold tracking-tight">MapMind</span>
         </a>
 
         <div className="hidden md:flex items-center gap-8">
