@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import logo from "@/assets/logo-modified.png";
+import logo from "@/assets/Circle_Logo.png";
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -58,7 +58,7 @@ const Navbar = ({ isVisible = true }: NavbarProps) => {
           <img
             src={logo}
             alt="MapMind logo"
-            className="w-8 sm:w-9 h-8 sm:h-9 transition-transform duration-300 group-hover:scale-110"
+            className="w-8 sm:w-9 h-8 sm:h-9 transition-transform duration-300 group-hover:scale-110 dark:invert"
           />
           <span className="text-base sm:text-lg font-bold tracking-tight">MapMind</span>
         </a>

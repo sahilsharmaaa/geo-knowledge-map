@@ -9,7 +9,7 @@ import Navbar from "@/components/landing/Navbar";
 import HeroVideo from "@/components/landing/HeroVideo";
 import ImageLightbox from "@/components/landing/ImageLightbox";
 import CinematicIntro from "@/components/landing/CinematicIntro";
-import logo from "@/assets/logo-modified.png";
+import logo from "@/assets/Circle_Logo.png";
 import screenshotStep1 from "@/assets/screenshot-step1.png";
 import screenshotStep2 from "@/assets/screenshot-step2.png";
 import screenshotStep3 from "@/assets/screenshot-step3-new.png";
@@ -291,7 +291,7 @@ const Landing = () => {
         <footer className="border-t border-border/50 py-6 sm:py-8 px-4 sm:px-6 md:px-12 lg:px-24">
           <div className="max-w-7xl mx-auto flex flex-col gap-4 sm:gap-6 sm:flex-row sm:items-center sm:justify-between text-xs sm:text-sm text-muted-foreground">
             <a href="https://mapmind.online" className="flex items-center gap-2 group shrink-0">
-              <img src={logo} alt="MapMind" className="w-5 sm:w-6 h-5 sm:h-6" />
+              <img src={logo} alt="MapMind" className="w-5 sm:w-6 h-5 sm:h-6 dark:invert" />
               <span className="font-semibold text-foreground font-display text-sm sm:text-base">MapMind</span>
             </a>
             <div className="flex flex-col xs:flex-row items-start xs:items-center gap-3 sm:gap-6">
