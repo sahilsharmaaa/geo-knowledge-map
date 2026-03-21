@@ -46,11 +46,12 @@ const Navbar = ({ isVisible = true }: NavbarProps) => {
       aria-hidden={!isVisible}
       style={{ transitionDuration: "400ms" }}
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 md:px-12 lg:px-24 transition-[opacity,background-color,padding,border-color,box-shadow,backdrop-filter]",
-        isVisible ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none",
+        "fixed left-0 right-0 z-50 mx-auto transition-all duration-300 ease-out",
+        "w-[96%] sm:w-[92%] md:w-[85%] lg:w-[80%] max-w-6xl rounded-full border border-border/40",
+        isVisible ? "opacity-100 pointer-events-auto translate-y-0" : "opacity-0 pointer-events-none -translate-y-4",
         scrolled
-          ? "py-3 bg-background/80 backdrop-blur-xl border-b border-border/50 shadow-lg shadow-background/20"
-          : "py-3 sm:py-5 bg-transparent"
+          ? "top-4 py-2 sm:py-2.5 px-4 sm:px-6 md:px-8 bg-background/75 backdrop-blur-xl shadow-lg shadow-primary/5"
+          : "top-4 sm:top-6 py-3 sm:py-4 px-4 sm:px-6 md:px-8 bg-background/40 backdrop-blur-md shadow-sm"
       )}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -108,7 +109,7 @@ const Navbar = ({ isVisible = true }: NavbarProps) => {
 
       {/* Mobile Navigation Menu */}
       {isMobile && mobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur-xl border-b border-border/50 animate-in slide-in-from-top-2">
+        <div className="md:hidden absolute top-[calc(100%+0.5rem)] left-0 right-0 rounded-2xl bg-background/95 backdrop-blur-xl border border-border/50 animate-in slide-in-from-top-2 overflow-hidden shadow-2xl">
           <div className="py-4 px-4 space-y-3">
             {navLinks.map((link) => (
               <a
