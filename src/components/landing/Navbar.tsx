@@ -50,8 +50,8 @@ const Navbar = ({ isVisible = true }: NavbarProps) => {
         "w-[96%] sm:w-[92%] md:w-[85%] lg:w-[80%] max-w-6xl rounded-full border border-border/40",
         isVisible ? "opacity-100 pointer-events-auto translate-y-0" : "opacity-0 pointer-events-none -translate-y-4",
         scrolled
-          ? "top-4 py-2 sm:py-2.5 px-4 sm:px-6 md:px-8 bg-background/75 backdrop-blur-xl shadow-lg shadow-primary/5"
-          : "top-4 sm:top-6 py-3 sm:py-4 px-4 sm:px-6 md:px-8 bg-background/40 backdrop-blur-md shadow-sm"
+          ? "top-4 py-2 sm:py-2.5 px-4 sm:px-6 md:px-8 bg-background/45 backdrop-blur-xl shadow-lg shadow-primary/5"
+          : "top-4 sm:top-6 py-3 sm:py-4 px-4 sm:px-6 md:px-8 bg-background/30 backdrop-blur-md shadow-sm"
       )}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
