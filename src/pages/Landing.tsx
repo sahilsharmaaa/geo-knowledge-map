@@ -109,7 +109,7 @@ const Landing = () => {
               <Badge variant="secondary" className="w-fit text-xs px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-secondary text-muted-foreground border-border">
                 Your second brain, mapped to the world
               </Badge>
-              <h1 className="font-display text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight">
+              <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight">
                 Know the world.
                 <br />
                 <span className="text-gradient">Own the knowledge.</span>
@@ -142,7 +142,7 @@ const Landing = () => {
         <SectionWrapper>
           <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-8 md:gap-0">
             <div className="md:pr-12 md:border-r border-border/50">
-              <h2 className="font-display text-xl sm:text-2xl font-semibold mb-4 sm:mb-6">Your knowledge is scattered.</h2>
+              <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6">Your knowledge is scattered.</h2>
               <ul className="space-y-3 sm:space-y-4 text-sm sm:text-base text-muted-foreground">
                 <li>Notes in random apps with no geographic context.</li>
                 <li>No way to see connections between world events.</li>
@@ -151,7 +151,7 @@ const Landing = () => {
               </ul>
             </div>
             <div className="md:pl-12">
-              <h2 className="font-display text-xl sm:text-2xl font-semibold mb-4 sm:mb-6">MapMind brings it all together.</h2>
+              <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6">MapMind brings it all together.</h2>
               <ul className="space-y-3 sm:space-y-4 text-sm sm:text-base text-muted-foreground">
                 <li>Notes live on the map, right where they belong.</li>
                 <li>Everything connected geographically and thematically.</li>
@@ -165,7 +165,7 @@ const Landing = () => {
         {/* How it works */}
         <section id="workflow" className="relative w-full border-y border-primary/10 bg-gradient-to-b from-primary/5 via-background to-background overflow-hidden py-16 sm:py-24 lg:py-32 my-12 sm:my-24 shadow-[inset_0_0_100px_rgba(var(--primary),0.05)]">
           <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-          <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-center mb-4 sm:mb-6 text-primary">From reading to remembering — in seconds</h2>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-center mb-4 sm:mb-6 text-primary">From reading to remembering — in seconds</h2>
           <p className="text-center text-muted-foreground text-sm sm:text-lg max-w-2xl mx-auto mb-10 sm:mb-16 px-4">See how MapMind transforms scattered reading into a visual geographical knowledge web. Stop here—this is what your second brain looks like.</p>
           <div className="relative w-full max-w-[1600px] mx-auto px-2 sm:px-4 lg:px-8 xl:px-12">
             {/* Arrows */}
@@ -216,7 +216,7 @@ const Landing = () => {
 
         {/* Who is this for */}
         <SectionWrapper>
-          <h2 className="font-display text-2xl sm:text-3xl font-bold text-center mb-10 sm:mb-14">Built for people who think in context</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-10 sm:mb-14">Built for people who think in context</h2>
           <div className="max-w-5xl mx-auto grid sm:grid-cols-2 gap-4 sm:gap-5">
             {personas.map((p) => (
               <div
@@ -233,7 +233,7 @@ const Landing = () => {
 
         {/* Features */}
         <SectionWrapper id="features">
-          <h2 className="font-display text-2xl sm:text-3xl font-bold text-center mb-10 sm:mb-14">Everything you need. Nothing you don't.</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-10 sm:mb-14">Everything you need. Nothing you don't.</h2>
           <div className="max-w-5xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
             {features.map((f) => (
               <div key={f.name} className="rounded-lg sm:rounded-xl border border-border/50 bg-secondary/20 p-4 sm:p-6">
@@ -247,7 +247,7 @@ const Landing = () => {
 
         {/* Testimonials */}
         <SectionWrapper id="testimonials">
-          <h2 className="font-display text-2xl sm:text-3xl font-bold text-center mb-10 sm:mb-14">From people who think for themselves</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-10 sm:mb-14">From people who think for themselves</h2>
           <div className="relative max-w-6xl mx-auto">
             <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-4 sm:w-8 bg-gradient-to-r from-background to-transparent z-10 lg:hidden" />
             <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-4 sm:w-8 bg-gradient-to-l from-background to-transparent z-10 lg:hidden" />
@@ -275,8 +275,8 @@ const Landing = () => {
             <div className="w-[300px] sm:w-[400px] md:w-[500px] h-[300px] sm:h-[400px] md:h-[500px] rounded-full bg-primary/5 blur-[120px]" />
           </div>
           <div className="relative z-10">
-            <h2 className="font-display text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold mb-2">The world is happening.</h2>
-            <h2 className="font-display text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold text-gradient mb-4 sm:mb-6">Start making sense of it.</h2>
+            <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold mb-2">The world is happening.</h2>
+            <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold text-gradient mb-4 sm:mb-6">Start making sense of it.</h2>
             <p className="text-sm sm:text-base text-muted-foreground mb-6 sm:mb-8">Free to use. No credit card. Start in 30 seconds.</p>
             <Button size="lg" className="text-sm sm:text-base px-6 sm:px-10" asChild>
               <a href="https://mapmind.online">Open MapMind →</a>
