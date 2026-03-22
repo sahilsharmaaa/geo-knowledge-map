@@ -117,11 +117,20 @@ const Landing = () => {
               <p className="text-base sm:text-lg text-muted-foreground max-w-lg">
                 Attach notes to any country or region. Track events, markets, history, and ideas — all on one interactive map.
               </p>
-              <div className="flex flex-col xs:flex-row gap-2 sm:gap-3 pt-2">
-                <Button size="lg" className="text-sm sm:text-base px-6 sm:px-8" asChild>
+              <div className="flex flex-col xs:flex-row items-center justify-center gap-2 sm:gap-3 pt-2 max-w-xl">
+                <Button
+                  size="lg"
+                  className="text-sm sm:text-base px-4 sm:px-5 h-12 sm:h-14 w-[17.2rem] sm:w-[18.5rem] whitespace-nowrap"
+                  asChild
+                >
                   <a href="https://mapmind.online">Start Mapping — It's Free</a>
                 </Button>
-                <Button size="lg" variant="ghost" className="text-sm sm:text-base text-muted-foreground" onClick={scrollToWorkflow}>
+                <Button
+                  size="lg"
+                  variant="ghost"
+                  className="text-sm sm:text-base text-muted-foreground px-4 sm:px-5 h-12 sm:h-14 w-[17.2rem] sm:w-[18.5rem] whitespace-nowrap"
+                  onClick={scrollToWorkflow}
+                >
                   See how it works ↓
                 </Button>
               </div>

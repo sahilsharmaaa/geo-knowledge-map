@@ -112,6 +112,20 @@ All colors MUST be HSL.
     }
   }
 
+  @keyframes nudgeX {
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(6px);
+    }
+  }
+
+  .animate-nudge-x {
+    animation: nudgeX 1.1s ease-in-out infinite;
+  }
+
   .text-gradient {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-[hsl(210,100%,52%)] to-[hsl(210,100%,72%)];
   }
@@ -235,6 +249,44 @@ All colors MUST be HSL.
       rgba(0, 0, 0, 0.45) 45%,
       rgba(0, 0, 0, 0) 100%
     );
+  }
+
+  .cinematic-section--intro::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.25);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .cinematic-section--intro::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse 80% 60% at 50% 50%,
+      rgba(0, 0, 0, 0.1) 0%,
+      rgba(0, 0, 0, 0.35) 100%
+    );
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .cinematic-image[src*="panoramic"] {
+    filter: blur(1.2px) brightness(1.15) contrast(1.25);
+    opacity: 1;
+    animation: panSlow 120s linear infinite;
+    object-fit: cover;
+  }
+
+  @keyframes panSlow {
+    0% {
+      object-position: 0% center;
+    }
+    100% {
+      object-position: 100% center;
+    }
   }
 }
 

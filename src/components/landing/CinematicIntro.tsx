@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/hooks/use-mobile";
+import panoramicMap from "@/assets/panoramic-map.png";
 import bg1 from "@/assets/cinematic-bg1.png";
 import bg2 from "@/assets/cinematic-bg2-country-detail.png";
 import bg3 from "@/assets/cinematic-bg3.png";
@@ -81,15 +82,15 @@ const CinematicIntro = () => {
   };
 
   const goToSection = (index: number) => {
-    const newIndex = Math.max(0, Math.min(4, index));
+    const newIndex = Math.max(0, Math.min(5, index));
     setActiveIndex(newIndex);
   };
 
   const goNext = () => {
-    if (activeIndex < 4) {
+    if (activeIndex < 5) {
       goToSection(activeIndex + 1);
     } else {
-      // After section 5, scroll down to hero and hide arrows
+      // After section 6, scroll down to hero and hide arrows
       setIsInCarousel(false);
       scrollToHero();
     }
@@ -117,8 +118,8 @@ const CinematicIntro = () => {
       const inCarousel = currentScrollTop < window.innerHeight;
       setIsInCarousel(inCarousel);
 
-      // If user is in sections 1-5 (activeIndex <= 4), prevent scrolling and navigate carousel instead
-      if (activeIndexRef.current <= 4 && currentScrollTop > 10) {
+      // If user is in sections 1-6 (activeIndex <= 5), prevent scrolling and navigate carousel instead
+      if (activeIndexRef.current <= 5 && currentScrollTop > 10) {
         // Force scroll back to top to prevent page scroll
         container.scrollTop = 0;
         
@@ -135,7 +136,7 @@ const CinematicIntro = () => {
           }
         }
       }
-      // If at section 5, allow normal scrolling to proceed to main content
+      // If at section 6, allow normal scrolling to proceed to main content
       // (don't force scrollTop back to 0)
 
       lastScrollTop = currentScrollTop;
@@ -158,9 +159,9 @@ const CinematicIntro = () => {
       const scrollTop = container.scrollTop;
       const inCarouselArea = scrollTop < window.innerHeight * 0.1; // Very lenient check
 
-      // Only intercept wheel events in carousel area (first 5 sections)
-      if (activeIndexRef.current > 4) {
-        // Beyond section 5, allow normal wheel scrolling to proceed to main content
+      // Only intercept wheel events in carousel area (first 6 sections)
+      if (activeIndexRef.current > 5) {
+        // Beyond section 6, allow normal wheel scrolling to proceed to main content
         return;
       }
 
@@ -186,8 +187,8 @@ const CinematicIntro = () => {
         return;
       }
 
-      // Don't go past section 4 (allow section 5, then scroll to main)
-      if (newIndex > 4) {
+      // Don't go past section 5 (allow section 6, then scroll to main)
+      if (newIndex > 5) {
         setIsInCarousel(false);
         scrollToHero();
         return;
@@ -220,7 +221,7 @@ const CinematicIntro = () => {
 
     const handleTouchMove = (e: TouchEvent) => {
       // If we are still in the cinematic sequence, prevent native vertical scrolling
-      if (activeIndexRef.current <= 4) {
+      if (activeIndexRef.current <= 5) {
         e.preventDefault();
       }
     };
@@ -240,7 +241,7 @@ const CinematicIntro = () => {
       if (Math.abs(diff) > swipeThreshold) {
         if (diff > 0) {
           // Swiped up - go next
-          if (activeIndexRef.current < 4) {
+          if (activeIndexRef.current < 5) {
             setActiveIndex(activeIndexRef.current + 1);
           } else {
             setIsInCarousel(false);
@@ -287,18 +288,86 @@ const CinematicIntro = () => {
       aria-label="MapMind introduction"
       style={{ touchAction: "pan-y" }}
     >
-      {/* Carousel Wrapper for Sections 1-5 */}
+      {/* Carousel Wrapper for Sections 1-6 */}
       <div ref={carouselWrapperRef} className="cinematic-carousel-wrapper">
-        {/* Section 1 */}
-        <CinematicSlide bgImage={bg1} isActive={activeIndex === 0} className="max-w-4xl sm:max-w-5xl">
+        {/* Section 1 - NEW INTRO SLIDE with Panoramic Map Background */}
+        <CinematicSlide
+          bgImage={panoramicMap}
+          isActive={activeIndex === 0}
+          className="max-w-5xl sm:max-w-6xl lg:max-w-7xl"
+          sectionClassName="relative cinematic-section--intro"
+        >
+          {/* Content */}
+          <div className="relative z-10 flex flex-col items-center justify-center gap-6 sm:gap-8">
+            <div className="space-y-4 sm:space-y-6">
+              <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-primary">
+                <span className="text-white"> Think in maps — </span>not just notes.
+              </h1>
+              <p className="text-base sm:text-lg md:text-xl text-white leading-relaxed">
+                Build your own <span className="text-white font-semibold">"second brain"</span> for news, ideas, and knowledge
+              </p>
+            </div>
+
+            <div className="space-y-3 sm:space-y-4 w-full max-w-4xl">
+              {/* Horizontal Flow Chart */}
+              <div className="flex items-center justify-center gap-2 sm:gap-3 py-4">
+                <div className="flex flex-col items-center">
+                  <div className="px-3 sm:px-4 py-2 rounded-lg bg-transparent text-xs sm:text-sm text-white font-medium whitespace-nowrap">
+                    Read & Add
+                  </div>
+                </div>
+                <div className="text-white text-lg">→</div>
+                <div className="flex flex-col items-center">
+                  <div className="px-3 sm:px-4 py-2 rounded-lg bg-transparent text-xs sm:text-sm text-white font-medium whitespace-nowrap">
+                    Connect to Places
+                  </div>
+                </div>
+                <div className="text-white text-lg">→</div>
+                <div className="flex flex-col items-center">
+                  <div className="px-3 sm:px-4 py-2 rounded-lg bg-transparent text-xs sm:text-sm text-white font-medium whitespace-nowrap">
+                    See Patterns
+                  </div>
+                </div>
+              </div>
+
+              <div className="text-center px-3 sm:px-0">
+                <h3 className="text-base sm:text-xl md:text-2xl text-white font-semibold leading-snug">
+                  Like <span className="text-white">Notion</span> + <span className="text-white">Google Maps</span> — for your knowledge
+                </h3>
+              </div>
+
+              <div className="flex flex-col items-center gap-3 pt-8">
+                <button
+                  className="inline-flex items-center justify-center w-[17.2rem] sm:w-[18.5rem] px-4 sm:px-5 py-3 sm:py-3.5 text-sm sm:text-base font-semibold uppercase tracking-[0.08em] whitespace-nowrap bg-primary text-primary-foreground rounded-lg border border-primary hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/20 transition-all duration-200 transform hover:scale-105 active:scale-95"
+                >
+                  <a href="https://mapmind.online" className="flex items-center justify-center w-full text-center whitespace-nowrap leading-tight">
+                    Start Mapping — It's Free
+                  </a>
+                </button>
+              </div>
+            </div>
+
+            {/* Secondary CTA - Arrow hint */}
+            <button
+              onClick={goNext}
+              className="hidden sm:flex mt-4 sm:mt-6 flex-col items-center gap-2 text-white hover:text-white transition-colors duration-200 group"
+            >
+              <span className="text-sm font-semibold uppercase tracking-wider">Does this feel familiar?</span>
+              <ChevronRight className="w-6 h-6 sm:w-7 sm:h-7 animate-nudge-x" />
+            </button>
+          </div>
+        </CinematicSlide>
+
+        {/* Section 2 */}
+        <CinematicSlide bgImage={bg1} isActive={activeIndex === 1} className="max-w-4xl sm:max-w-5xl">
           <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white">
             Do you know someone who always knows what's going on{" "}
             <span className="text-gradient">in the world?</span>
           </h2>
         </CinematicSlide>
 
-        {/* Section 2 */}
-        <CinematicSlide bgImage={bg2} isActive={activeIndex === 1} className="max-w-3xl sm:max-w-4xl">
+        {/* Section 3 */}
+        <CinematicSlide bgImage={bg2} isActive={activeIndex === 2} className="max-w-3xl sm:max-w-4xl">
           <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white mb-6 sm:mb-8">
             What's going on in the United States?
           </h2>
@@ -307,11 +376,11 @@ const CinematicIntro = () => {
           </p>
         </CinematicSlide>
 
-        {/* Section 3 */}
+        {/* Section 4 */}
         <CinematicSlide
           bgImage={bg1}
           imagePosition="72% center"
-          isActive={activeIndex === 2}
+          isActive={activeIndex === 3}
           className="max-w-3xl sm:max-w-4xl"
         >
           <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white mb-6 sm:mb-8">
@@ -322,17 +391,17 @@ const CinematicIntro = () => {
           </p>
         </CinematicSlide>
 
-        {/* Section 4 */}
-        <CinematicSlide bgImage={bg3} isActive={activeIndex === 3} className="max-w-3xl sm:max-w-4xl">
+        {/* Section 5 */}
+        <CinematicSlide bgImage={bg3} isActive={activeIndex === 4} className="max-w-3xl sm:max-w-4xl">
           <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold leading-tight text-white">
             But how do they know?
           </h2>
         </CinematicSlide>
 
-        {/* Section 5 — The Reveal */}
+        {/* Section 6 — The Reveal */}
         <CinematicSlide
           bgImage={bg1}
-          isActive={activeIndex === 4}
+          isActive={activeIndex === 5}
           className="max-w-2xl sm:max-w-[880px]"
           sectionClassName="cinematic-section--reading"
         >
@@ -376,14 +445,14 @@ const CinematicIntro = () => {
             className="hidden sm:flex fixed left-6 top-1/2 -translate-y-1/2 z-50 p-2 text-white/60 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-colors duration-200"
             aria-label="Previous section"
           >
-            <ChevronLeft className="w-6 h-6" />
+            <ChevronLeft className="w-8 h-8" />
           </button>
           <button
             onClick={goNext}
             className="hidden sm:flex fixed right-6 top-1/2 -translate-y-1/2 z-50 p-2 text-white/60 hover:text-white transition-colors duration-200"
             aria-label="Next section"
           >
-            <ChevronRight className="w-6 h-6" />
+            <ChevronRight className="w-8 h-8" />
           </button>
         </>
       )}
@@ -391,7 +460,7 @@ const CinematicIntro = () => {
       {/* Mobile Pagination Dots */}
       {isInCarousel && isContainerInView && isMobile && (
         <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex gap-2">
-          {[0, 1, 2, 3, 4].map((index) => (
+          {[0, 1, 2, 3, 4, 5].map((index) => (
             <button
               key={index}
               onClick={() => dotClick(index)}
@@ -409,8 +478,8 @@ const CinematicIntro = () => {
       )}
 
       {/* Mobile hint text */}
-      {isInCarousel && isMobile && activeIndex !== 4 && (
-        <div className="fixed bottom-16 left-1/2 -translate-x-1/2 text-xs text-white/70 pointer-events-none animate-pulse">
+      {isInCarousel && isMobile && activeIndex !== 5 && (
+        <div className="fixed bottom-24 left-1/2 -translate-x-1/2 text-xs text-white/70 pointer-events-none animate-pulse">
           Swipe up to continue
         </div>
       )}
