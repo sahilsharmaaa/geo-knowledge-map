@@ -313,7 +313,7 @@ const CinematicIntro = () => {
               <div className="flex items-center justify-center gap-2 sm:gap-3 py-4">
                 <div className="flex flex-col items-center">
                   <div className="px-3 sm:px-4 py-2 rounded-lg bg-transparent text-xs sm:text-sm text-white font-medium whitespace-nowrap">
-                    Read & Save
+                    Read & Add
                   </div>
                 </div>
                 <div className="text-white text-lg">→</div>
@@ -330,8 +330,8 @@ const CinematicIntro = () => {
                 </div>
               </div>
 
-              <div className="text-center">
-                <h3 className="text-lg sm:text-xl md:text-2xl text-white font-semibold whitespace-nowrap">
+              <div className="text-center px-3 sm:px-0">
+                <h3 className="text-base sm:text-xl md:text-2xl text-white font-semibold leading-snug">
                   Like <span className="text-white">Notion</span> + <span className="text-white">Google Maps</span> — for your knowledge
                 </h3>
               </div>
@@ -350,10 +350,10 @@ const CinematicIntro = () => {
             {/* Secondary CTA - Arrow hint */}
             <button
               onClick={goNext}
-              className="mt-4 sm:mt-6 flex flex-col items-center gap-2 text-white hover:text-white transition-colors duration-200 group"
+              className="hidden sm:flex mt-4 sm:mt-6 flex-col items-center gap-2 text-white hover:text-white transition-colors duration-200 group"
             >
               <span className="text-sm font-semibold uppercase tracking-wider">Does this feel familiar?</span>
-              <ChevronRight className="w-6 h-6 sm:w-7 sm:h-7 group-hover:translate-x-1 transition-transform duration-200" />
+              <ChevronRight className="w-6 h-6 sm:w-7 sm:h-7 animate-nudge-x" />
             </button>
           </div>
         </CinematicSlide>
@@ -479,7 +479,7 @@ const CinematicIntro = () => {
 
       {/* Mobile hint text */}
       {isInCarousel && isMobile && activeIndex !== 5 && (
-        <div className="fixed bottom-16 left-1/2 -translate-x-1/2 text-xs text-white/70 pointer-events-none animate-pulse">
+        <div className="fixed bottom-24 left-1/2 -translate-x-1/2 text-xs text-white/70 pointer-events-none animate-pulse">
           Swipe up to continue
         </div>
       )}

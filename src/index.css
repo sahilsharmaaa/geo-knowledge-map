@@ -112,6 +112,20 @@ All colors MUST be HSL.
     }
   }
 
+  @keyframes nudgeX {
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(6px);
+    }
+  }
+
+  .animate-nudge-x {
+    animation: nudgeX 1.1s ease-in-out infinite;
+  }
+
   .text-gradient {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-[hsl(210,100%,52%)] to-[hsl(210,100%,72%)];
   }
@@ -260,7 +274,7 @@ All colors MUST be HSL.
   }
 
   .cinematic-image[src*="panoramic"] {
-    filter: blur(1.5px) brightness(1.15) contrast(1.25);
+    filter: blur(1.2px) brightness(1.15) contrast(1.25);
     opacity: 1;
     animation: panSlow 120s linear infinite;
     object-fit: cover;
