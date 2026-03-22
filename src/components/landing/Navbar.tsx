@@ -18,6 +18,7 @@ interface NavbarProps {
 
 const Navbar = ({ isVisible = true }: NavbarProps) => {
   const [scrolled, setScrolled] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const isMobile = useIsMobile();
   const { theme, setTheme } = useTheme();
@@ -26,6 +27,30 @@ const Navbar = ({ isVisible = true }: NavbarProps) => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const updateScrollProgress = () => {
+      const scrollTop = window.scrollY;
+      const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+
+      if (documentHeight <= 0) {
+        setScrollProgress(0);
+        return;
+      }
+
+      const progress = Math.min(100, Math.max(0, (scrollTop / documentHeight) * 100));
+      setScrollProgress(progress);
+    };
+
+    updateScrollProgress();
+    window.addEventListener("scroll", updateScrollProgress, { passive: true });
+    window.addEventListener("resize", updateScrollProgress);
+
+    return () => {
+      window.removeEventListener("scroll", updateScrollProgress);
+      window.removeEventListener("resize", updateScrollProgress);
+    };
   }, []);
 
   // Close mobile menu when window is resized to desktop
@@ -46,7 +71,7 @@ const Navbar = ({ isVisible = true }: NavbarProps) => {
       aria-hidden={!isVisible}
       style={{ transitionDuration: "400ms" }}
       className={cn(
-        "fixed left-0 right-0 z-50 mx-auto transition-all duration-300 ease-out",
+        "fixed left-0 right-0 z-50 mx-auto overflow-hidden transition-all duration-300 ease-out",
         "w-[96%] sm:w-[92%] md:w-[85%] lg:w-[80%] max-w-6xl rounded-full border border-border/40",
         isVisible ? "opacity-100 pointer-events-auto translate-y-0" : "opacity-0 pointer-events-none -translate-y-4",
         scrolled
@@ -140,6 +165,12 @@ const Navbar = ({ isVisible = true }: NavbarProps) => {
           </div>
         </div>
       )}
+
+      <div
+        aria-hidden="true"
+        className="absolute bottom-0 left-0 h-[2px] bg-primary transition-[width] duration-75 ease-out"
+        style={{ width: `${scrollProgress}%` }}
+      />
     </nav>
   );
 };
