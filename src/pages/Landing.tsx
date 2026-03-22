@@ -180,18 +180,18 @@ const Landing = () => {
             {/* Arrows */}
             <button 
               onClick={() => scrollByAmount("left")}
-              className="absolute left-2 sm:left-4 md:left-6 lg:left-8 xl:left-12 top-1/2 -translate-y-1/2 z-20 p-2 text-muted-foreground hover:text-primary transition-colors duration-300"
+              className="absolute left-2 sm:left-4 md:left-6 lg:left-8 xl:left-12 top-1/2 -translate-y-1/2 z-20 p-2 text-primary transition-colors duration-300"
               aria-label="Scroll left"
             >
-              <ChevronLeft className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 opacity-70 hover:opacity-100 drop-shadow-sm" />
+              <ChevronLeft className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 drop-shadow-sm" />
             </button>
 
             <button 
               onClick={() => scrollByAmount("right")}
-              className="absolute right-2 sm:right-4 md:right-6 lg:right-8 xl:right-12 top-1/2 -translate-y-1/2 z-20 p-2 text-muted-foreground hover:text-primary transition-colors duration-300"
+              className="absolute right-2 sm:right-4 md:right-6 lg:right-8 xl:right-12 top-1/2 -translate-y-1/2 z-20 p-2 text-primary transition-colors duration-300"
               aria-label="Scroll right"
             >
-              <ChevronRight className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 opacity-70 hover:opacity-100 drop-shadow-sm" />
+              <ChevronRight className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 drop-shadow-sm" />
             </button>
 
 
