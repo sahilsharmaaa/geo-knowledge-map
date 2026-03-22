@@ -118,8 +118,8 @@ const CinematicIntro = () => {
       const inCarousel = currentScrollTop < window.innerHeight;
       setIsInCarousel(inCarousel);
 
-      // If user is in sections 1-6 (activeIndex <= 5), prevent scrolling and navigate carousel instead
-      if (activeIndexRef.current <= 5 && currentScrollTop > 10) {
+      // On mobile, prevent page scroll in sections 1-6 and navigate carousel instead
+      if (isMobile && activeIndexRef.current <= 5 && currentScrollTop > 10) {
         // Force scroll back to top to prevent page scroll
         container.scrollTop = 0;
         
@@ -147,7 +147,7 @@ const CinematicIntro = () => {
     return () => {
       container.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [isMobile]);
 
   // Handle wheel events for carousel navigation (desktop only)
   useEffect(() => {
