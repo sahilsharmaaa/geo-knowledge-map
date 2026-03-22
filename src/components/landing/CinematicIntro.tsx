@@ -300,8 +300,8 @@ const CinematicIntro = () => {
           {/* Content */}
           <div className="relative z-10 flex flex-col items-center justify-center gap-6 sm:gap-8">
             <div className="space-y-4 sm:space-y-6">
-              <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-white">
-                Think in maps — not just notes.
+              <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-primary">
+                <span className="text-white"> Think in maps — </span>not just notes.
               </h1>
               <p className="text-base sm:text-lg md:text-xl text-white leading-relaxed">
                 Build your own <span className="text-white font-semibold">"second brain"</span> for news, ideas, and knowledge
