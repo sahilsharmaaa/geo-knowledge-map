@@ -53,17 +53,28 @@ const CinematicSlide = ({
 const CinematicIntro = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const carouselWrapperRef = useRef<HTMLDivElement>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(() => {
+    if (typeof window !== "undefined" && window.matchMedia("(max-width: 767px)").matches) {
+      return 1;
+    }
+    return 0;
+  });
   const [isInCarousel, setIsInCarousel] = useState(true);
   const [isContainerInView, setIsContainerInView] = useState(true);
   const lastWheelTimeRef = useRef<number>(0);
   const activeIndexRef = useRef<number>(0);
   const isMobile = useIsMobile();
+  const firstSlideIndex = isMobile ? 1 : 0;
+  const lastSlideIndex = 5;
 
   // Update ref whenever activeIndex changes
   useEffect(() => {
     activeIndexRef.current = activeIndex;
   }, [activeIndex]);
+
+  useEffect(() => {
+    setActiveIndex((prev) => Math.max(firstSlideIndex, Math.min(lastSlideIndex, prev)));
+  }, [firstSlideIndex]);
 
   // Observer for rendering arrows only when the cinematic section is actually visible
   useEffect(() => {
@@ -82,7 +93,7 @@ const CinematicIntro = () => {
   };
 
   const goToSection = (index: number) => {
-    const newIndex = Math.max(0, Math.min(5, index));
+    const newIndex = Math.max(firstSlideIndex, Math.min(lastSlideIndex, index));
     setActiveIndex(newIndex);
   };
 
@@ -97,7 +108,7 @@ const CinematicIntro = () => {
   };
 
   const goPrev = () => {
-    goToSection(Math.max(0, activeIndex - 1));
+    goToSection(Math.max(firstSlideIndex, activeIndex - 1));
   };
 
   // Track carousel visibility and handle scroll-to-carousel navigation
@@ -118,8 +129,8 @@ const CinematicIntro = () => {
       const inCarousel = currentScrollTop < window.innerHeight;
       setIsInCarousel(inCarousel);
 
-      // On mobile, prevent page scroll in sections 1-6 and navigate carousel instead
-      if (isMobile && activeIndexRef.current <= 5 && currentScrollTop > 10) {
+      // If user is in sections 1-6 (activeIndex <= 5), prevent scrolling and navigate carousel instead
+      if (activeIndexRef.current <= lastSlideIndex && currentScrollTop > 10) {
         // Force scroll back to top to prevent page scroll
         container.scrollTop = 0;
         
@@ -127,11 +138,11 @@ const CinematicIntro = () => {
         if (timeSinceLastScroll > 600) {
           if (scrollDelta > 0) {
             // Scrolling down - go to next section
-            setActiveIndex(activeIndexRef.current + 1);
+            setActiveIndex(Math.min(lastSlideIndex, activeIndexRef.current + 1));
             lastScrollTime = now;
           } else if (scrollDelta < 0) {
             // Scrolling up - go to previous section
-            setActiveIndex(activeIndexRef.current - 1);
+            setActiveIndex(Math.max(firstSlideIndex, activeIndexRef.current - 1));
             lastScrollTime = now;
           }
         }
@@ -147,7 +158,7 @@ const CinematicIntro = () => {
     return () => {
       container.removeEventListener("scroll", handleScroll);
     };
-  }, [isMobile]);
+  }, [firstSlideIndex, lastSlideIndex]);
 
   // Handle wheel events for carousel navigation (desktop only)
   useEffect(() => {
@@ -210,11 +221,14 @@ const CinematicIntro = () => {
     const container = containerRef.current;
     if (!container) return;
 
+    let touchStartX = 0;
+    let touchEndX = 0;
     let touchStartY = 0;
     let touchEndY = 0;
     let touchStartTime = 0;
 
     const handleTouchStart = (e: TouchEvent) => {
+      touchStartX = e.changedTouches[0].screenX;
       touchStartY = e.changedTouches[0].screenY;
       touchStartTime = Date.now();
     };
@@ -227,6 +241,7 @@ const CinematicIntro = () => {
     };
 
     const handleTouchEnd = (e: TouchEvent) => {
+      touchEndX = e.changedTouches[0].screenX;
       touchEndY = e.changedTouches[0].screenY;
       const touchDuration = Date.now() - touchStartTime;
 
@@ -234,23 +249,35 @@ const CinematicIntro = () => {
       if (touchDuration > 1000) return;
 
       const swipeThreshold = 30; // pixels
-      // diff > 0 means user swiped up (intent to scroll down / go next)
-      const diff = touchStartY - touchEndY;
+      // diffY > 0 means user swiped up (intent to go next)
+      // diffX > 0 means user swiped left (intent to go next)
+      const diffY = touchStartY - touchEndY;
+      const diffX = touchStartX - touchEndX;
 
-      // If they swipe vertically far enough
-      if (Math.abs(diff) > swipeThreshold) {
-        if (diff > 0) {
-          // Swiped up - go next
+      // Resolve dominant swipe direction first (vertical or horizontal)
+      if (Math.max(Math.abs(diffY), Math.abs(diffX)) > swipeThreshold) {
+        if (Math.abs(diffY) >= Math.abs(diffX)) {
+          if (diffY > 0) {
+            // Swiped up - go next
+            if (activeIndexRef.current < 5) {
+              setActiveIndex(activeIndexRef.current + 1);
+            } else {
+              setIsInCarousel(false);
+              scrollToHero();
+            }
+          } else {
+            // Swiped down - go previous
+            if (activeIndexRef.current > firstSlideIndex) {
+              setActiveIndex(activeIndexRef.current - 1);
+            }
+          }
+        } else if (diffX > 0) {
+          // Swiped left - go next
           if (activeIndexRef.current < 5) {
             setActiveIndex(activeIndexRef.current + 1);
           } else {
             setIsInCarousel(false);
             scrollToHero();
-          }
-        } else {
-          // Swiped down - go previous
-          if (activeIndexRef.current > 0) {
-            setActiveIndex(activeIndexRef.current - 1);
           }
         }
       }
@@ -265,7 +292,7 @@ const CinematicIntro = () => {
       container.removeEventListener("touchmove", handleTouchMove);
       container.removeEventListener("touchend", handleTouchEnd);
     };
-  }, []);
+  }, [firstSlideIndex]);
 
   // Update carousel wrapper position
   useEffect(() => {
@@ -458,9 +485,9 @@ const CinematicIntro = () => {
       )}
 
       {/* Mobile Pagination Dots */}
-      {isInCarousel && isContainerInView && isMobile && (
+      {isInCarousel && isContainerInView && isMobile && activeIndex !== lastSlideIndex && (
         <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex gap-2">
-          {[0, 1, 2, 3, 4, 5].map((index) => (
+          {[1, 2, 3, 4, 5].map((index) => (
             <button
               key={index}
               onClick={() => dotClick(index)}
@@ -478,7 +505,7 @@ const CinematicIntro = () => {
       )}
 
       {/* Mobile hint text */}
-      {isInCarousel && isMobile && activeIndex !== 5 && (
+      {isInCarousel && isMobile && activeIndex === 0 && (
         <div className="fixed bottom-24 left-1/2 -translate-x-1/2 text-xs text-white/70 pointer-events-none animate-pulse">
           Swipe up to continue
         </div>
