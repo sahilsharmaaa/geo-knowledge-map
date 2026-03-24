@@ -147,7 +147,7 @@ const ImportCallout = () => {
               <Chrome className="w-3 sm:w-3.5 h-3 sm:h-3.5" />
               Chrome Extension
             </div>
-            <h2 className="text-xl sm:text-3xl font-bold mb-2 sm:mb-3">Import from any webpage — instantly</h2>
+            <h2 className="text-xl sm:text-3xl font-bold mb-2 sm:mb-3">fetch knowledge from any webpage — instantly</h2>
             <p className="text-xs sm:text-base text-muted-foreground max-w-xl mx-auto px-2">
               Our Chrome extension sits right in your browser. Click it on any article, newsletter, or webpage — it extracts the content, structures it into notes, and imports directly into MapMind.
             </p>
