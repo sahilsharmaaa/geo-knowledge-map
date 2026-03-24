@@ -126,6 +126,20 @@ All colors MUST be HSL.
     animation: nudgeX 1.1s ease-in-out infinite;
   }
 
+  @keyframes nudgeY {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(6px);
+    }
+  }
+
+  .animate-nudge-y {
+    animation: nudgeY 1.1s ease-in-out infinite;
+  }
+
   .text-gradient {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-[hsl(210,100%,52%)] to-[hsl(210,100%,72%)];
   }

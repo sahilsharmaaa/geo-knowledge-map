@@ -7,6 +7,7 @@ import { Menu, X, Sun, Moon } from "lucide-react";
 import { useTheme } from "@/components/theme-provider";
 
 const navLinks = [
+  { label: "Philosophy", href: "#philosophy" },
   { label: "Features", href: "#features" },
   { label: "How It Works", href: "#workflow" },
   { label: "Testimonials", href: "#testimonials" },
@@ -71,8 +72,9 @@ const Navbar = ({ isVisible = true }: NavbarProps) => {
       aria-hidden={!isVisible}
       style={{ transitionDuration: "400ms" }}
       className={cn(
-        "fixed left-0 right-0 z-50 mx-auto overflow-hidden transition-all duration-300 ease-out",
+        "fixed left-0 right-0 z-50 mx-auto transition-all duration-300 ease-out",
         "w-[96%] sm:w-[92%] md:w-[85%] lg:w-[80%] max-w-6xl rounded-full border border-border/40",
+        isMobile && mobileMenuOpen ? "overflow-visible" : "overflow-hidden",
         isVisible ? "opacity-100 pointer-events-auto translate-y-0" : "opacity-0 pointer-events-none -translate-y-4",
         scrolled
           ? "top-4 py-2 sm:py-2.5 px-4 sm:px-6 md:px-8 bg-background/45 backdrop-blur-xl shadow-lg shadow-primary/5"
@@ -119,16 +121,28 @@ const Navbar = ({ isVisible = true }: NavbarProps) => {
           <a href="https://mapmind.online">Get Started</a>
         </Button>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile Controls */}
         {isMobile && (
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 text-muted-foreground hover:text-foreground transition-colors"
-            aria-label="Toggle mobile menu"
-            aria-expanded={mobileMenuOpen}
-          >
-            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
+          <div className="md:hidden flex items-center gap-1.5">
+            <button
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className="relative flex items-center justify-center p-2 text-muted-foreground hover:text-foreground transition-colors"
+              aria-label="Toggle theme"
+            >
+              <Sun className="h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+              <Moon className="absolute h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+              <span className="sr-only">Toggle theme</span>
+            </button>
+
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="p-2 text-muted-foreground hover:text-foreground transition-colors"
+              aria-label="Toggle mobile menu"
+              aria-expanded={mobileMenuOpen}
+            >
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
         )}
       </div>
 
@@ -150,18 +164,6 @@ const Navbar = ({ isVisible = true }: NavbarProps) => {
               <a href="https://mapmind.online">Get Started</a>
             </Button>
 
-            <div className="pt-2 flex items-center justify-between border-t border-border/50">
-              <span className="text-sm font-medium text-muted-foreground">Theme</span>
-              <button
-                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                className="flex items-center justify-center p-2 rounded-full border border-border/50 hover:bg-secondary/50 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50"
-                aria-label="Toggle theme"
-              >
-                <Sun className="h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100 text-muted-foreground" />
-                <Moon className="absolute h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 text-muted-foreground" />
-                <span className="sr-only">Toggle theme</span>
-              </button>
-            </div>
           </div>
         </div>
       )}

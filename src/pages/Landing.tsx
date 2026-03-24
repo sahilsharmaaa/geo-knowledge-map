@@ -9,6 +9,7 @@ import Navbar from "@/components/landing/Navbar";
 import HeroVideo from "@/components/landing/HeroVideo";
 import ImageLightbox from "@/components/landing/ImageLightbox";
 import CinematicIntro from "@/components/landing/CinematicIntro";
+import { cn } from "@/lib/utils";
 import logo from "@/assets/Circle_Logo.png";
 import screenshotStep1 from "@/assets/screenshot-step1.png";
 import screenshotStep2 from "@/assets/screenshot-step2.png";
@@ -51,15 +52,34 @@ const steps = [
   { img: screenshotStep6, title: "Explore your country", caption: "Dive into any country to see its stats, your notes, tags, and filters — all in one place." },
 ];
 
+const philosophySlides = [
+  "Do you know someone who always knows what's going on in the world?",
+  "What's going on in the United States?",
+  "What's happening across Europe?",
+  "But how do they know?",
+  "Structure learning geographically: read, forget, scroll, repeat no more. Anchor news, markets, ideas to map locations—they stick. Charlie Munger called it building a \"lattice work of mental models\"",
+];
+
 const Landing = () => {
   const heroRef = useRef<HTMLElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const philosophyScrollContainerRef = useRef<HTMLDivElement>(null);
   const [isNavbarVisible, setIsNavbarVisible] = useState(false);
 
   const scrollByAmount = (direction: "left" | "right") => {
     if (scrollContainerRef.current) {
       const scrollAmount = window.innerWidth < 768 ? window.innerWidth * 0.8 : 400;
       scrollContainerRef.current.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth"
+      });
+    }
+  };
+
+  const scrollPhilosophyByAmount = (direction: "left" | "right") => {
+    if (philosophyScrollContainerRef.current) {
+      const scrollAmount = window.innerWidth < 768 ? window.innerWidth * 0.8 : 400;
+      philosophyScrollContainerRef.current.scrollBy({
         left: direction === "left" ? -scrollAmount : scrollAmount,
         behavior: "smooth"
       });
@@ -171,9 +191,74 @@ const Landing = () => {
           </div>
         </SectionWrapper>
 
+        {/* Philosophy */}
+        <section id="philosophy" className="relative py-16 sm:py-24 lg:py-28 border-y border-border/50 bg-background/70">
+          <div className="relative w-full max-w-[1600px] mx-auto px-2 sm:px-4 lg:px-8 xl:px-12">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-10 sm:mb-14">Philosophy</h2>
+
+            <button
+              onClick={() => scrollPhilosophyByAmount("left")}
+              className="absolute left-2 sm:left-4 md:left-6 lg:left-8 xl:left-12 top-[58%] -translate-y-1/2 z-20 p-2 text-primary transition-colors duration-300"
+              aria-label="Scroll philosophy left"
+            >
+              <ChevronLeft className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 drop-shadow-sm" />
+            </button>
+
+            <button
+              onClick={() => scrollPhilosophyByAmount("right")}
+              className="absolute right-2 sm:right-4 md:right-6 lg:right-8 xl:right-12 top-[58%] -translate-y-1/2 z-20 p-2 text-primary transition-colors duration-300"
+              aria-label="Scroll philosophy right"
+            >
+              <ChevronRight className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 drop-shadow-sm" />
+            </button>
+
+            <div
+              ref={philosophyScrollContainerRef}
+              className="flex gap-4 sm:gap-6 lg:gap-8 overflow-x-auto pb-8 pt-4 snap-x snap-mandatory scrollbar-thin px-4 sm:px-12 lg:px-24 xl:px-32"
+            >
+              {philosophySlides.map((question, index) => (
+                <article
+                  key={question}
+                  className="w-full min-w-[85vw] sm:min-w-[60vw] md:min-w-[450px] lg:min-w-[480px] xl:min-w-[550px] max-w-[650px] snap-center flex flex-col items-center text-center shrink-0 transition-transform duration-500 ease-out hover:-translate-y-1"
+                >
+                  <div className="rounded-xl lg:rounded-2xl border border-primary/20 overflow-hidden shadow-2xl shadow-primary/10 mb-4 sm:mb-6 w-full bg-gradient-to-br from-secondary/50 via-background/80 to-secondary/30 backdrop-blur-xl group transition-all duration-500 ease-out hover:border-primary/35 hover:shadow-primary/20">
+                    <div className="bg-secondary/35 border-b border-primary/10 flex items-center gap-1.5 px-4 py-2 lg:py-3">
+                      <span className="w-2.5 h-2.5 rounded-full bg-primary/40" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-primary/40" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-primary/40" />
+                    </div>
+                    <div className="aspect-[4/3] sm:aspect-video relative overflow-hidden flex items-center justify-center px-6 sm:px-8 md:px-10 py-8 sm:py-10">
+                      <p className={cn(
+                        "font-semibold leading-tight tracking-tight text-foreground/95 group-hover:text-foreground transition-colors duration-500",
+                        index === philosophySlides.length - 1
+                          ? "text-base xs:text-lg sm:text-xl md:text-2xl text-primary"
+                          : "text-2xl xs:text-3xl sm:text-4xl md:text-5xl"
+                      )}>
+                        {index === philosophySlides.length - 1 ? (
+                          <>
+                            Structure learning geographically: read, forget, scroll, repeat no more. Anchor news, markets, ideas to map locations—they stick. {" "}
+                            <span className="font-bold italic underline decoration-primary decoration-2 underline-offset-4 bg-primary/10 px-1 rounded-sm">
+                              Charlie Munger called it building a "lattice work of mental models"
+                            </span>
+                          </>
+                        ) : (
+                          question
+                        )}
+                      </p>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* How it works */}
         <section id="workflow" className="relative w-full border-y border-primary/10 bg-gradient-to-b from-primary/5 via-background to-background overflow-hidden py-16 sm:py-24 lg:py-32 my-12 sm:my-24 shadow-[inset_0_0_100px_rgba(var(--primary),0.05)]">
           <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+          <div className="flex w-fit items-center justify-center gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold uppercase tracking-widest mb-3 sm:mb-4 mx-auto">
+            How It Works
+          </div>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-center mb-4 sm:mb-6 text-primary">From reading to remembering — in seconds</h2>
           <p className="text-center text-muted-foreground text-sm sm:text-lg max-w-2xl mx-auto mb-10 sm:mb-16 px-4">See how MapMind transforms scattered reading into a visual geographical knowledge web. Stop here—this is what your second brain looks like.</p>
           <div className="relative w-full max-w-[1600px] mx-auto px-2 sm:px-4 lg:px-8 xl:px-12">
@@ -242,6 +327,9 @@ const Landing = () => {
 
         {/* Features */}
         <SectionWrapper id="features">
+          <div className="flex w-fit items-center justify-center gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold uppercase tracking-widest mb-3 sm:mb-4 mx-auto">
+            Features
+          </div>
           <h2 className="text-2xl sm:text-3xl font-bold text-center mb-10 sm:mb-14 text-primary">Everything you need. Nothing you don't.</h2>
           <div className="max-w-5xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
             {features.map((f) => (
