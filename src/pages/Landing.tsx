@@ -57,7 +57,7 @@ const philosophySlides = [
   "What's going on in the United States?",
   "What's happening across Europe?",
   "But how do they know?",
-  "Structure learning geographically: read, forget, scroll, repeat no more. Anchor news, markets, ideas to map locations—they stick. Charlie Munger called it building a \"lattice work of mental models\"",
+  "Structure learning geographically: read, forget, scroll, repeat no more. Anchor news, markets, ideas to the map — so they stick better. Charlie Munger called it building a \"lattice work of mental models\"",
 ];
 
 const Landing = () => {
@@ -231,16 +231,26 @@ const Landing = () => {
                       <p className={cn(
                         "font-semibold leading-tight tracking-tight text-foreground/95 group-hover:text-foreground transition-colors duration-500",
                         index === philosophySlides.length - 1
-                          ? "text-base xs:text-lg sm:text-xl md:text-2xl text-primary"
+                          ? "text-base xs:text-lg sm:text-xl md:text-2xl"
                           : "text-2xl xs:text-3xl sm:text-4xl md:text-5xl"
                       )}>
                         {index === philosophySlides.length - 1 ? (
-                          <>
-                            Structure learning geographically: read, forget, scroll, repeat no more. Anchor news, markets, ideas to map locations—they stick. {" "}
-                            <span className="font-bold italic underline decoration-primary decoration-2 underline-offset-4 bg-primary/10 px-1 rounded-sm">
-                              Charlie Munger called it building a "lattice work of mental models"
+                          <span className="flex flex-col gap-4">
+                            <span className="text-primary font-bold italic underline decoration-primary decoration-2 underline-offset-4 bg-primary/10 px-1 rounded-sm">
+                              Charlie Munger called it building a "lattice work of mental models".
                             </span>
+                            <span>Structure learning geographically: read, forget, scroll, repeat no more.</span>
+                            <span>Anchor news, markets, ideas to the map — so they stick better.</span>
+                          </span>
+                        ) : index === 0 ? (
+                          <>
+                            Do you know <span className="text-primary">someone</span> who always knows <span className="text-primary">what's going on in the world?</span>
                           </>
+                        ) : index === 1 || index === 2 ? (
+                          <span className="flex flex-col items-center">
+                            <span>{question}</span>
+                            <span className="block mt-4 text-primary text-xl xs:text-2xl sm:text-3xl md:text-4xl">— they know</span>
+                          </span>
                         ) : (
                           question
                         )}
