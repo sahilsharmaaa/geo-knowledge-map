@@ -164,7 +164,7 @@ const Landing = () => {
 
         {/* Social proof */}
         <div className="border-t border-b border-border/50 py-4 px-4 sm:px-6 text-center text-xs sm:text-sm text-muted-foreground">
-          Used by students, analysts, and curious minds across — 🇮🇳 India &nbsp;·&nbsp; 🇺🇸 USA &nbsp;·&nbsp; 🇬🇧 UK &nbsp;·&nbsp; 🇸🇬 Singapore &nbsp;·&nbsp; 🇩🇪 Germany
+          Used by students, analysts, and curious minds across — 🇵🇱 Poland &nbsp;·&nbsp; 🇮🇳 India &nbsp;·&nbsp; 🇺🇸 United States &nbsp;·&nbsp; 🇬🇭 Ghana &nbsp;·&nbsp; 🇹🇷 Turkey
         </div>
 
         {/* Problem / Solution */}
