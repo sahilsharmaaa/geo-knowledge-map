@@ -17,6 +17,14 @@ import screenshotStep3 from "@/assets/screenshot-step3-new.png";
 import screenshotStep4 from "@/assets/screenshot-step3.png";
 import screenshotStep5 from "@/assets/screenshot-step4.png";
 import screenshotStep6 from "@/assets/screenshot-step5.png";
+import premium1 from "@/assets/1.png";
+import premium1_1 from "@/assets/1.1.png";
+import premium2 from "@/assets/2.png";
+import premium2_1 from "@/assets/2.1.png";
+import premium3 from "@/assets/3.png";
+import premium3_1 from "@/assets/3.1.png";
+import premium3_2 from "@/assets/3.2.png";
+import premium4 from "@/assets/4.png";
 
 const personas = [
   { icon: Newspaper, title: "The News Follower", desc: "Track global conflicts, elections, and economic shifts. Never lose context on a developing story." },
@@ -52,6 +60,65 @@ const steps = [
   { img: screenshotStep6, title: "Explore your country", caption: "Dive into any country to see its stats, your notes, tags, and filters — all in one place." },
 ];
 
+const premiumSlides = [
+  {
+    number: "1",
+    featureName: "Publish Your Maps (Read-Only Public Link)",
+    desc: "Generate a unique public read-only URL so anyone can view your map without a MapMind account.",
+    src: premium1,
+    alt: "Publish map modal with generated public link",
+  },
+  {
+    number: "1.1",
+    featureName: "Publish Your Maps (Read-Only Public Link)",
+    desc: "Published maps can be opened by anyone as a clean read-only knowledge site.",
+    src: premium1_1,
+    alt: "Published map view visible in read-only mode",
+  },
+  {
+    number: "2",
+    featureName: "Knowledge Graph (Obsidian-Style)",
+    desc: "Connect notes into a visual web so ideas reinforce each other and improve retention.",
+    src: premium2,
+    alt: "Knowledge graph overview with connected notes",
+  },
+  {
+    number: "2.1",
+    featureName: "Knowledge Graph (Obsidian-Style)",
+    desc: "Inspect connected nodes and understand the relationships between events and concepts.",
+    src: premium2_1,
+    alt: "Knowledge graph interaction with node tooltip",
+  },
+  {
+    number: "3",
+    featureName: "USA State Subdivision Map",
+    desc: "Track knowledge state-wise across the US, with more country subdivisions coming soon.",
+    src: premium3,
+    alt: "US subdivision map with state-level highlights",
+  },
+  {
+    number: "3.1",
+    featureName: "USA State Subdivision Map",
+    desc: "Browse all US states with dedicated cards and note counts for quick navigation.",
+    src: premium3_1,
+    alt: "All states view with state cards",
+  },
+  {
+    number: "3.2",
+    featureName: "USA State Subdivision Map",
+    desc: "Dive into individual state pages to manage notes with filters and sorting.",
+    src: premium3_2,
+    alt: "Single state page with notes and filters",
+  },
+  {
+    number: "4",
+    featureName: "Add As Many Maps As You Want",
+    desc: "Free includes three maps. Premium unlocks unlimited maps for separate knowledge bases.",
+    src: premium4,
+    alt: "Map selector showing multiple maps and new map option",
+  },
+];
+
 const philosophySlides = [
   "Do you know someone who always knows what's going on in the world?",
   "What's going on in the United States?",
@@ -64,6 +131,7 @@ const Landing = () => {
   const heroRef = useRef<HTMLElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const philosophyScrollContainerRef = useRef<HTMLDivElement>(null);
+  const premiumScrollContainerRef = useRef<HTMLDivElement>(null);
   const [isNavbarVisible, setIsNavbarVisible] = useState(false);
 
   const scrollByAmount = (direction: "left" | "right") => {
@@ -80,6 +148,16 @@ const Landing = () => {
     if (philosophyScrollContainerRef.current) {
       const scrollAmount = window.innerWidth < 768 ? window.innerWidth * 0.8 : 400;
       philosophyScrollContainerRef.current.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth"
+      });
+    }
+  };
+
+  const scrollPremiumByAmount = (direction: "left" | "right") => {
+    if (premiumScrollContainerRef.current) {
+      const scrollAmount = window.innerWidth < 768 ? window.innerWidth * 0.85 : 450;
+      premiumScrollContainerRef.current.scrollBy({
         left: direction === "left" ? -scrollAmount : scrollAmount,
         behavior: "smooth"
       });
@@ -334,6 +412,61 @@ const Landing = () => {
             ))}
           </div>
         </SectionWrapper>
+
+        {/* Premium */}
+        <section id="premium" className="relative w-full border-y border-primary/10 bg-gradient-to-b from-background via-secondary/10 to-background overflow-hidden py-16 sm:py-24 lg:py-28">
+          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+          <div className="flex w-fit items-center justify-center gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold uppercase tracking-widest mb-3 sm:mb-4 mx-auto">
+            Premium
+          </div>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-4 sm:mb-6 text-primary">Premium Features for serious knowledge builders</h2>
+          <p className="text-center text-muted-foreground text-sm sm:text-base max-w-3xl mx-auto mb-10 sm:mb-14 px-4">
+            Unlock advanced tools to publish your intelligence, build a deeper knowledge web, and scale your mapping system beyond the free tier.
+          </p>
+
+          <div className="relative w-full max-w-[1600px] mx-auto px-2 sm:px-4 lg:px-8 xl:px-12">
+            <button
+              onClick={() => scrollPremiumByAmount("left")}
+              className="absolute left-2 sm:left-4 md:left-6 lg:left-8 xl:left-12 top-1/2 -translate-y-1/2 z-20 p-2 text-primary transition-colors duration-300"
+              aria-label="Scroll premium features left"
+            >
+              <ChevronLeft className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 drop-shadow-sm" />
+            </button>
+
+            <button
+              onClick={() => scrollPremiumByAmount("right")}
+              className="absolute right-2 sm:right-4 md:right-6 lg:right-8 xl:right-12 top-1/2 -translate-y-1/2 z-20 p-2 text-primary transition-colors duration-300"
+              aria-label="Scroll premium features right"
+            >
+              <ChevronRight className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 drop-shadow-sm" />
+            </button>
+
+            <div
+              ref={premiumScrollContainerRef}
+              className="flex gap-4 sm:gap-6 lg:gap-8 overflow-x-auto pb-8 pt-2 snap-x snap-mandatory scrollbar-thin px-4 sm:px-12 lg:px-24 xl:px-32"
+            >
+              {premiumSlides.map((slide) => (
+                <article
+                  key={slide.number}
+                  className="w-full min-w-[86vw] sm:min-w-[64vw] md:min-w-[620px] lg:min-w-[760px] xl:min-w-[860px] max-w-[920px] snap-center shrink-0 rounded-xl lg:rounded-2xl border border-primary/20 bg-secondary/20 p-4 sm:p-6 lg:p-7 shadow-2xl shadow-primary/5"
+                >
+                  <span className="text-xs lg:text-sm font-bold text-primary mb-2 tracking-widest uppercase block">Premium {slide.number}</span>
+                  <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 text-primary">{slide.number}. {slide.featureName}</h3>
+                  <p className="text-xs sm:text-sm lg:text-base text-muted-foreground leading-relaxed mb-4 sm:mb-5">{slide.desc}</p>
+                  <div className="rounded-lg border border-primary/15 overflow-hidden bg-background/40">
+                    <div className="aspect-[16/9] relative bg-background/60">
+                      <ImageLightbox
+                        src={slide.src}
+                        alt={slide.alt}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
 
         {/* Features */}
         <SectionWrapper id="features">
