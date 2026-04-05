@@ -18,13 +18,16 @@ import screenshotStep4 from "@/assets/screenshot-step3.png";
 import screenshotStep5 from "@/assets/screenshot-step4.png";
 import screenshotStep6 from "@/assets/screenshot-step5.png";
 import premium1 from "@/assets/1.png";
-import premium1_1 from "@/assets/1.1.png";
+import premium1_3 from "@/assets/1.3.png";
 import premium2 from "@/assets/2.png";
 import premium2_1 from "@/assets/2.1.png";
 import premium3 from "@/assets/3.png";
 import premium3_1 from "@/assets/3.1.png";
 import premium3_2 from "@/assets/3.2.png";
 import premium4 from "@/assets/4.png";
+import newsPremium1 from "@/assets/N 1.png";
+import newsPremium2 from "@/assets/N 2.png";
+import newsPremium3 from "@/assets/N 3.png";
 
 const personas = [
   { icon: Newspaper, title: "The News Follower", desc: "Track global conflicts, elections, and economic shifts. Never lose context on a developing story." },
@@ -63,55 +66,76 @@ const steps = [
 const premiumSlides = [
   {
     number: "1",
+    featureName: "Country News Mode",
+    desc: "Turn on the homepage country-news toggle to switch from notes view to live country headlines (premium only).",
+    src: newsPremium1,
+    alt: "Homepage toggle that activates country news mode for premium users",
+  },
+  {
+    number: "1.1",
+    featureName: "Country News Mode",
+    desc: "Configure your NewsData.io API key in settings. You can get a free key and save feed preferences in seconds.",
+    src: newsPremium2,
+    alt: "News API key setup with preferences and source filters",
+  },
+  {
+    number: "1.2",
+    featureName: "Country News Mode",
+    desc: "Click any country to fetch that country's news. Click save to add news as a note or go tho the source article.",
+    src: newsPremium3,
+    alt: "Country details with live country-specific news feed and save actions",
+  },
+  {
+    number: "2",
     featureName: "Publish Your Maps (Read-Only Public Link)",
     desc: "Generate a unique public read-only URL so anyone can view your map without a MapMind account.",
     src: premium1,
     alt: "Publish map modal with generated public link",
   },
   {
-    number: "1.1",
-    featureName: "Publish Your Maps (Read-Only Public Link)",
-    desc: "Published maps can be opened by anyone as a clean read-only knowledge site.",
-    src: premium1_1,
-    alt: "Published map view visible in read-only mode",
+    number: "2.2",
+    featureName: "polished UI",
+    desc: "Published map pages now support tag filters, sorting options, and adjustable window sizing for easier reading.",
+    src: premium1_3,
+    alt: "Published map with tag filters, sorting controls, and readable panel sizing",
   },
   {
-    number: "2",
+    number: "3",
     featureName: "Knowledge Graph (Obsidian-Style)",
     desc: "Connect notes into a visual web so ideas reinforce each other and improve retention.",
     src: premium2,
     alt: "Knowledge graph overview with connected notes",
   },
   {
-    number: "2.1",
+    number: "3.1",
     featureName: "Knowledge Graph (Obsidian-Style)",
     desc: "Inspect connected nodes and understand the relationships between events and concepts.",
     src: premium2_1,
     alt: "Knowledge graph interaction with node tooltip",
   },
   {
-    number: "3",
+    number: "4",
     featureName: "USA State Subdivision Map",
     desc: "Track knowledge state-wise across the US, with more country subdivisions coming soon.",
     src: premium3,
     alt: "US subdivision map with state-level highlights",
   },
   {
-    number: "3.1",
+    number: "4.1",
     featureName: "USA State Subdivision Map",
     desc: "Browse all US states with dedicated cards and note counts for quick navigation.",
     src: premium3_1,
     alt: "All states view with state cards",
   },
   {
-    number: "3.2",
+    number: "4.2",
     featureName: "USA State Subdivision Map",
     desc: "Dive into individual state pages to manage notes with filters and sorting.",
     src: premium3_2,
     alt: "Single state page with notes and filters",
   },
   {
-    number: "4",
+    number: "5",
     featureName: "Add As Many Maps As You Want",
     desc: "Free includes three maps. Premium unlocks unlimited maps for separate knowledge bases.",
     src: premium4,
