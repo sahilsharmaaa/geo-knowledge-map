@@ -1,4 +1,4 @@
-import { ArrowRightLeft, FileUp, Database, CheckCircle2, Chrome, Sparkles, Bot, ChevronLeft, ChevronRight } from "lucide-react";
+import { Chrome, Sparkles, ChevronLeft, ChevronRight, ArrowRightLeft } from "lucide-react";
 import { useRef } from "react";
 import ImageLightbox from "./ImageLightbox";
 import { Button } from "@/components/ui/button";
@@ -12,12 +12,6 @@ import gpt2 from "@/assets/gpt-2.png";
 import gpt21 from "@/assets/gpt-2-1.png";
 import gpt3 from "@/assets/gpt-3.png";
 import gpt4 from "@/assets/gpt-4.png";
-
-const benefits = [
-  { icon: FileUp, text: "Import notes from Notion, Evernote, or plain text" },
-  { icon: Database, text: "Bring your existing research — nothing gets left behind" },
-  { icon: CheckCircle2, text: "Up and running in under a minute" },
-];
 
 const extensionSteps = [
   { img: extension1, label: "Click the extension on any article" },
@@ -49,54 +43,23 @@ const ImportCallout = () => {
 
   return (
     <>
-      {/* Main Import CTA */}
-      <SectionWrapper>
-        <div className="relative max-w-4xl mx-auto">
-          <div className="absolute -inset-6 rounded-3xl bg-primary/5 blur-3xl pointer-events-none" />
-          <div className="relative rounded-xl sm:rounded-2xl border border-primary/20 bg-secondary/40 backdrop-blur-sm overflow-hidden">
-            <div className="h-1 w-full bg-gradient-to-r from-transparent via-primary to-transparent" />
-            <div className="p-5 sm:p-8 md:p-12 flex flex-col lg:flex-row items-center gap-6 sm:gap-10">
-              <div className="shrink-0 flex items-center justify-center w-16 sm:w-20 h-16 sm:h-20 rounded-lg sm:rounded-2xl bg-primary/10 border border-primary/20">
-                <ArrowRightLeft className="w-7 sm:w-9 h-7 sm:h-9 text-primary" />
-              </div>
-              <div className="flex-1 text-center lg:text-left">
-                <p className="text-xs font-semibold uppercase tracking-widest text-primary mb-1 sm:mb-2">
-                  Seamless Switch
-                </p>
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2 sm:mb-3">
-                  Your data comes with you.
-                </h2>
-                <p className="text-xs sm:text-sm text-muted-foreground mb-4 sm:mb-6 max-w-lg mx-auto lg:mx-0">
-                  Already have notes scattered across other tools? Import everything in one click — no copy-pasting, no starting over. Pick up exactly where you left off.
-                </p>
-                <ul className="space-y-2 sm:space-y-3 mb-6 sm:mb-8">
-                  {benefits.map((b) => (
-                    <li key={b.text} className="flex items-center gap-2 sm:gap-3 text-xs sm:text-sm text-muted-foreground">
-                      <b.icon className="w-3 sm:w-4 h-3 sm:h-4 text-primary shrink-0" />
-                      <span>{b.text}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Button size="lg" className="text-xs sm:text-base px-5 sm:px-8" asChild>
-                  <a href="https://mapmind.online">Start Importing — Free →</a>
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </SectionWrapper>
-
       {/* GPT Import Flow */}
       <SectionWrapper>
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-10 sm:mb-14">
-            <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold uppercase tracking-widest mb-3 sm:mb-4">
-              <Sparkles className="w-3 sm:w-3.5 h-3 sm:h-3.5" />
-              AI-Powered Import
+            <div className="flex flex-wrap items-center justify-center gap-2 mb-3 sm:mb-4">
+              <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold uppercase tracking-widest">
+                <Sparkles className="w-3 sm:w-3.5 h-3 sm:h-3.5" />
+                AI-Powered Import
+              </div>
+              <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold uppercase tracking-widest">
+                <ArrowRightLeft className="w-3 sm:w-3.5 h-3 sm:h-3.5" />
+                Easy Switching
+              </div>
             </div>
-            <h2 className="text-xl sm:text-3xl font-bold mb-2 sm:mb-3">Import with ChatGPT — zero effort</h2>
+            <h2 className="text-xl sm:text-3xl font-bold mb-2 sm:mb-3">Your data comes with you. Import with ChatGPT — zero effort</h2>
             <p className="text-xs sm:text-base text-muted-foreground max-w-xl mx-auto px-2">
-              Use our custom GPT to turn any article, newsletter, or your existing notes into perfectly structured MapMind entries. Just paste, and it does the rest.
+              If your notes are in Notion, Obsidian, or other tools, use MapMind Import to switch in minutes and continue exactly where you left off. Our custom GPT then turns any article, newsletter, or existing notes into perfectly structured MapMind entries.
             </p>
           </div>
 

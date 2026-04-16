@@ -1,4 +1,4 @@
-import { ChevronLeft, ChevronRight, Globe, Link2, Tags, Network, Share2, Flame, Newspaper, TrendingUp, BookOpen, Lightbulb, Quote } from "lucide-react";
+import { ChevronLeft, ChevronRight, Globe, Link2, Tags, Network, Share2, Flame, Newspaper, TrendingUp, BookOpen, Lightbulb, Quote, Headphones } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -151,11 +151,45 @@ const philosophySlides = [
   "Structure learning geographically: read, forget, scroll, repeat no more. Anchor news, markets, ideas to the map — so they stick better. Charlie Munger called it building a \"lattice work of mental models\"",
 ];
 
+const articlePodcastCards = [
+  {
+    img: "/article.png",
+    heading: "Article surfing",
+    desc: "Article surfing",
+  },
+  {
+    img: "/article%201.png",
+    heading: "Article surfing",
+    desc: "Read through your favourite news website and add notes",
+  },
+  {
+    img: "/article%20sources.png",
+    heading: "Article surfing",
+    desc: "Add more websites",
+  },
+  {
+    img: "/podcast.png",
+    heading: "Podcast",
+    desc: "Podcast Listening",
+  },
+  {
+    img: "/podcast%201.png",
+    heading: "Podcast",
+    desc: "Listen to your favourite podcasts and add notes",
+  },
+  {
+    img: "/podcast%20sources.png",
+    heading: "Podcast",
+    desc: "Add more podcasts",
+  },
+];
+
 const Landing = () => {
   const heroRef = useRef<HTMLElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const philosophyScrollContainerRef = useRef<HTMLDivElement>(null);
   const premiumScrollContainerRef = useRef<HTMLDivElement>(null);
+  const articlePodcastScrollRef = useRef<HTMLDivElement>(null);
   const [isNavbarVisible, setIsNavbarVisible] = useState(false);
 
   const scrollByAmount = (direction: "left" | "right") => {
@@ -182,6 +216,16 @@ const Landing = () => {
     if (premiumScrollContainerRef.current) {
       const scrollAmount = window.innerWidth < 768 ? window.innerWidth * 0.85 : 450;
       premiumScrollContainerRef.current.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth"
+      });
+    }
+  };
+
+  const scrollArticlePodcastByAmount = (direction: "left" | "right") => {
+    if (articlePodcastScrollRef.current) {
+      const scrollAmount = window.innerWidth < 768 ? window.innerWidth * 0.8 : 400;
+      articlePodcastScrollRef.current.scrollBy({
         left: direction === "left" ? -scrollAmount : scrollAmount,
         behavior: "smooth"
       });
@@ -266,14 +310,14 @@ const Landing = () => {
 
         {/* Social proof */}
         <div className="border-t border-b border-border/50 py-4 px-4 sm:px-6 text-center text-xs sm:text-sm text-muted-foreground">
-          Used by students, analysts, and curious minds across — 🇵🇱 Poland &nbsp;·&nbsp; 🇮🇳 India &nbsp;·&nbsp; 🇺🇸 United States &nbsp;·&nbsp; 🇬🇭 Ghana &nbsp;·&nbsp; 🇹🇷 Turkey
+          Used by students, analysts, and curious minds across — 🇵🇱 Poland &nbsp;·&nbsp; 🇮🇳 India &nbsp;·&nbsp; 🇺🇸 United States &nbsp;·&nbsp; 🇬🇧 United Kingdom &nbsp;·&nbsp; 🇬🇭 Ghana &nbsp;·&nbsp; 🇹🇷 Turkey
         </div>
 
         {/* Problem / Solution */}
         <SectionWrapper>
           <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-8 md:gap-0">
             <div className="md:pr-12 md:border-r border-border/50">
-              <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6">Your knowledge is scattered.</h2>
+              <h2 className="text-xl sm:text-2xl font-semibold text-primary mb-4 sm:mb-6">Your knowledge is scattered.</h2>
               <ul className="space-y-3 sm:space-y-4 text-sm sm:text-base text-muted-foreground">
                 <li>Notes in random apps with no geographic context.</li>
                 <li>No way to see connections between world events.</li>
@@ -282,7 +326,7 @@ const Landing = () => {
               </ul>
             </div>
             <div className="md:pl-12">
-              <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6">MapMind brings it all together.</h2>
+              <h2 className="text-xl sm:text-2xl font-semibold text-primary mb-4 sm:mb-6">MapMind brings it all together.</h2>
               <ul className="space-y-3 sm:space-y-4 text-sm sm:text-base text-muted-foreground">
                 <li>Notes live on the map, right where they belong.</li>
                 <li>Everything connected geographically and thematically.</li>
@@ -419,6 +463,57 @@ const Landing = () => {
 
         {/* Import Callout */}
         <ImportCallout />
+
+        {/* Article Surfing & Podcast */}
+        <section id="article-podcast" className="relative w-full border-y border-primary/10 bg-gradient-to-b from-primary/5 via-background to-background overflow-hidden py-16 sm:py-24 lg:py-32 my-12 sm:my-24 shadow-[inset_0_0_100px_rgba(var(--primary),0.05)]">
+          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+          <div className="flex w-fit items-center justify-center gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold uppercase tracking-widest mb-3 sm:mb-4 mx-auto">
+            <Headphones className="w-3 sm:w-3.5 h-3 sm:h-3.5" />
+            Knowledge Sources
+          </div>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-center mb-4 sm:mb-6 text-primary">Article Surfing & Podcast - Maximize Knowledge</h2>
+          <p className="text-center text-muted-foreground text-sm sm:text-lg max-w-2xl mx-auto mb-10 sm:mb-16 px-4">Capture insights while browsing trusted websites and podcasts, then convert everything into structured notes inside MapMind.</p>
+
+          <div className="relative w-full max-w-[1600px] mx-auto px-2 sm:px-4 lg:px-8 xl:px-12">
+            <button
+              onClick={() => scrollArticlePodcastByAmount("left")}
+              className="absolute left-2 sm:left-4 md:left-6 lg:left-8 xl:left-12 top-1/2 -translate-y-1/2 z-20 p-2 text-primary transition-colors duration-300"
+              aria-label="Scroll article and podcast cards left"
+            >
+              <ChevronLeft className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 drop-shadow-sm" />
+            </button>
+
+            <button
+              onClick={() => scrollArticlePodcastByAmount("right")}
+              className="absolute right-2 sm:right-4 md:right-6 lg:right-8 xl:right-12 top-1/2 -translate-y-1/2 z-20 p-2 text-primary transition-colors duration-300"
+              aria-label="Scroll article and podcast cards right"
+            >
+              <ChevronRight className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 drop-shadow-sm" />
+            </button>
+
+            <div
+              ref={articlePodcastScrollRef}
+              className="flex gap-4 sm:gap-6 lg:gap-8 overflow-x-auto pb-8 pt-4 snap-x snap-mandatory scrollbar-thin px-4 sm:px-12 lg:px-24 xl:px-32"
+            >
+              {articlePodcastCards.map((card, i) => (
+                <div key={i} className="w-full min-w-[85vw] sm:min-w-[60vw] md:min-w-[450px] lg:min-w-[480px] xl:min-w-[550px] max-w-[650px] snap-center flex flex-col items-center text-center shrink-0 transition-transform duration-500 hover:scale-[1.02]">
+                  <span className="text-xs lg:text-sm font-bold text-primary mb-3 sm:mb-4 tracking-widest shadow-sm">{card.heading}</span>
+                  <div className="rounded-xl lg:rounded-2xl border border-primary/20 overflow-hidden shadow-2xl shadow-primary/5 mb-4 sm:mb-6 w-full bg-secondary/20 backdrop-blur-sm group">
+                    <div className="bg-secondary/40 border-b border-primary/10 flex items-center gap-1.5 px-4 py-2 lg:py-3">
+                      <span className="w-2.5 h-2.5 rounded-full bg-primary/40" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-primary/40" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-primary/40" />
+                    </div>
+                    <div className="aspect-[4/3] sm:aspect-video relative overflow-hidden bg-background/50 flex">
+                      <ImageLightbox src={card.img} alt={card.desc} className="w-full h-full object-contain group-hover:scale-[1.03] transition-transform duration-700 ease-out" />
+                    </div>
+                  </div>
+                  <p className="text-sm lg:text-base text-muted-foreground/90 max-w-sm lg:max-w-md">{card.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
         {/* Who is this for */}
         <SectionWrapper>
