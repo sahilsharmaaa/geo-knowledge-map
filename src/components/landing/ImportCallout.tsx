@@ -57,7 +57,10 @@ const ImportCallout = () => {
                 Easy Switching
               </div>
             </div>
-            <h2 className="text-xl sm:text-3xl font-bold mb-2 sm:mb-3">Your data comes with you. Import with ChatGPT — zero effort</h2>
+            <h2 className="text-xl sm:text-3xl font-bold mb-2 sm:mb-3">
+              <span className="text-primary">Your data comes with you.</span>{" "}
+              Import with ChatGPT — zero effort
+            </h2>
             <p className="text-xs sm:text-base text-muted-foreground max-w-xl mx-auto px-2">
               If your notes are in Notion, Obsidian, or other tools, use MapMind Import to switch in minutes and continue exactly where you left off. Our custom GPT then turns any article, newsletter, or existing notes into perfectly structured MapMind entries.
             </p>
