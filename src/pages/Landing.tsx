@@ -182,6 +182,26 @@ const articlePodcastCards = [
     heading: "Podcast",
     desc: "Add more podcasts",
   },
+  {
+    img: "/pic%201.png",
+    heading: "YouTube surfing",
+    desc: "YouTube Surfing lets you watch curated videos, playlists, and channels in MapMind while taking notes in parallel, with one-tap timestamps and a composer placed beside the player on desktop.",
+  },
+  {
+    img: "/pic%202%20.png",
+    heading: "YouTube surfing",
+    desc: "MapMind ships with a curated starter set of business, economics, and global-news channels so you can start watching right away and fetch recent videos from those channels.",
+  },
+  {
+    img: "/pic%203.png",
+    heading: "YouTube surfing",
+    desc: "Or you can simply paste a YouTube video link and start watching it.",
+  },
+  {
+    img: "/pic%204.png",
+    heading: "YouTube surfing",
+    desc: "Manage sources by adding your favourite channels, playlists, or videos and saving them.",
+  },
 ];
 
 const Landing = () => {
@@ -464,21 +484,21 @@ const Landing = () => {
         {/* Import Callout */}
         <ImportCallout />
 
-        {/* Article Surfing & Podcast */}
+        {/* Article Surfing, Podcast, and YouTube */}
         <section id="article-podcast" className="relative w-full border-y border-primary/10 bg-gradient-to-b from-primary/5 via-background to-background overflow-hidden py-16 sm:py-24 lg:py-32 my-12 sm:my-24 shadow-[inset_0_0_100px_rgba(var(--primary),0.05)]">
           <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
           <div className="flex w-fit items-center justify-center gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold uppercase tracking-widest mb-3 sm:mb-4 mx-auto">
             <Headphones className="w-3 sm:w-3.5 h-3 sm:h-3.5" />
             Knowledge Sources
           </div>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-center mb-4 sm:mb-6 text-primary">Article Surfing & Podcast - Maximize Knowledge</h2>
-          <p className="text-center text-muted-foreground text-sm sm:text-lg max-w-2xl mx-auto mb-10 sm:mb-16 px-4">Capture insights while browsing trusted websites and podcasts, then convert everything into structured notes inside MapMind.</p>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-center mb-4 sm:mb-6 text-primary">Maximize knowledg — Surf Internet</h2>
+          <p className="text-center text-muted-foreground text-sm sm:text-lg max-w-2xl mx-auto mb-10 sm:mb-16 px-4">Capture insights while browsing trusted websites, listening to podcasts, and watching YouTube, then convert everything into structured notes inside MapMind.</p>
 
           <div className="relative w-full max-w-[1600px] mx-auto px-2 sm:px-4 lg:px-8 xl:px-12">
             <button
               onClick={() => scrollArticlePodcastByAmount("left")}
               className="absolute left-2 sm:left-4 md:left-6 lg:left-8 xl:left-12 top-1/2 -translate-y-1/2 z-20 p-2 text-primary transition-colors duration-300"
-              aria-label="Scroll article and podcast cards left"
+              aria-label="Scroll knowledge source cards left"
             >
               <ChevronLeft className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 drop-shadow-sm" />
             </button>
@@ -486,7 +506,7 @@ const Landing = () => {
             <button
               onClick={() => scrollArticlePodcastByAmount("right")}
               className="absolute right-2 sm:right-4 md:right-6 lg:right-8 xl:right-12 top-1/2 -translate-y-1/2 z-20 p-2 text-primary transition-colors duration-300"
-              aria-label="Scroll article and podcast cards right"
+              aria-label="Scroll knowledge source cards right"
             >
               <ChevronRight className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 drop-shadow-sm" />
             </button>
