@@ -11,7 +11,7 @@ const navLinks = [
   { label: "How It Works", href: "#workflow" },
   { label: "Features", href: "#features" },
   { label: "Premium", href: "#premium" },
-  { label: "Testimonials", href: "#testimonials" },
+  { label: "Surfing", href: "#article-podcast" },
 ];
 
 interface NavbarProps {
